@@ -1,0 +1,20 @@
+# speex 1.2.1 - the Speex speech codec library, from the Xiph.Org release
+# directory. 1.2.1 is the newest release of the 1.x series (the 1.2 branch that
+# fixed the CVEs), and it is the version ffmpeg-kit pins as Speex-1.2.1.
+#
+# The release tarball ships a generated ./configure with aclocal.m4 and every
+# Makefile.in, so nothing here has to run autotools. It carries one leading
+# directory (speex-1.2.1/) and unpacks with --strip-components=1.
+version = "1.2.1"
+
+build = """
+mkdir -p dl
+if [ ! -f dl/speex.tar.gz ]; then
+  curl -fSL -C - -o dl/speex.tar.gz "https://downloads.xiph.org/releases/speex/speex-1.2.1.tar.gz"
+fi
+rm -rf src
+mkdir -p src
+tar -xzf dl/speex.tar.gz -C src --strip-components=1
+mkdir -p $PREFIX
+cp -r src/* $PREFIX/
+"""

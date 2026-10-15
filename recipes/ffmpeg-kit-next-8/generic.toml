@@ -1,0 +1,91 @@
+deps = ["ffmpeg-kit-next-8@source", "ffmpeg-kit-ffmpeg-8@aarch64-android33", "libvpx", "opus", "lame"]
+
+# ffmpeg-kit-ffmpeg-8 is the FFmpeg, patched as ffmpeg-kit patches its own. The
+# three external libraries are the ones this tree already has that take part in
+# the build; android.sh still builds its own copies of them (only ffmpeg is
+# skipped), so they are in the closure rather than in prebuilt/.
+build = """
+# Work from the source this package fetched, the way recipes here copy a source
+# dependency in (docs/recipes.md: cp -rf $NESTDIR/hello@source/* .)
+cp -rf $NESTDIR/ffmpeg-kit-next-8@source/. .
+
+# android.sh:3-11 refuses to start without these two names. The host has
+# ANDROID_HOME (mise's android-sdk), so the SDK and the one NDK installed are
+# named from it rather than repeated here.
+export ANDROID_SDK_ROOT=$ANDROID_HOME
+for _ndk in $ANDROID_HOME/ndk/*; do ANDROID_NDK_ROOT=$_ndk; done
+export ANDROID_NDK_ROOT
+unset _ndk
+
+# The FFmpeg this archive is built from is the one ffmpeg-kit-ffmpeg-8 built.
+# ffmpeg-kit's own FFmpeg patches are already in it - the ffkitsaf/ffkitmem/
+# ffkitstream protocols and the thread-local log level, scripts/android/
+# ffmpeg.sh:411-435 - which is what the wrapper was written against. It is put
+# where android.sh's own ffmpeg build would have installed it -
+# scripts/android/ffmpeg.sh:19 sets FFMPEG_LIBRARY_PATH=$LIB_INSTALL_BASE/$LIB_NAME
+# with LIB_NAME=ffmpeg, and android.sh:254 sets ARM64_BUILD_PATH to
+# android-arm64-<api> - so prebuilt/android-arm64-33/ffmpeg/.
+#
+# include/ is not only the installed headers either: ffmpeg-kit-ffmpeg-8 mirrors
+# the FFmpeg source tree's headers over them and copies config.h in, the way
+# ffmpeg.sh:527-531 does, because the wrapper compiles against "config.h"
+# (ffmpegkit.c:31, fftools/ffmpeg.h:106) and against "fftools/ffmpeg.h"
+# (ffmpeg_context.h:33, fftools/*.h). fftools/ therefore arrives inside
+# include/fftools/, which is where android/jni/Android.mk's FFMPEG_INCLUDES and
+# the exported includes of android/jni/ffmpeg/Android.mk's libavutil module look.
+mkdir -p prebuilt/android-arm64-33/ffmpeg
+cp -rf $NESTDIR/ffmpeg-kit-ffmpeg-8@aarch64-android33/lib prebuilt/android-arm64-33/ffmpeg/
+cp -rf $NESTDIR/ffmpeg-kit-ffmpeg-8@aarch64-android33/include prebuilt/android-arm64-33/ffmpeg/
+
+# SKIP_ffmpeg=1 is what keeps their FFmpeg build from landing on top of ours
+# (scripts/main-android.sh:217), and --no-ffmpeg-kit-protocols is gone with it:
+# the protocols their FFmpeg build would have patched in are in the FFmpeg this
+# recipe placed above, and the wrapper calls for them unconditionally -
+# av_set_saf_open / av_set_saf_close / av_set_ffkitmem_functions /
+# av_set_ffkitstream_functions in ffmpegkit.c:1544-1549, and ffkitsaf: / ffkitmem: /
+# ffkitstream: URLs, which only register when the protocol declarations are in
+# the FFmpeg tree at configure time (see ffmpeg-kit-ffmpeg-8/generic.toml).
+
+# One thread, taken from CORES because the generated script exports it, so the
+# value follows the --cores the release is run with: --jobs N is theirs and
+# --max-workers is Gradle's (GRADLE_OPTS is read by Gradle without touching any
+# file of theirs).
+# DESTDIR is emptied for their build, and that is not tidiness: retrolunar exports
+# it for the recipe's own install, and their scripts read it themselves, so every
+# artifact their build installed went into retrolunar's stage -
+#   -- Installing: <stage>/.../work-.../prebuilt/android-arm64-33/cpu-features/lib/libndk_compat.a
+# - while the step after it looked in the work directory and stopped with
+#   Android NDK: ERROR:jni/cpu-features/Android.mk:cpu-features: LOCAL_SRC_FILES
+#   points to a missing file
+# Empty rather than unset, so $DESTDIR still expands - to nothing. Our own
+# install is unaffected: $PREFIX was spelled with DESTDIR when the node's prelude
+# set it.
+# Gradle needs a JDK, and this host's default java is a JRE without javac
+# (/usr/lib/jvm/java-25-openjdk: "does not provide the required capabilities:
+# [JAVA_COMPILER]"). mise's java is the JDK, so JAVA_HOME points there and is
+# repeated as org.gradle.java.home, the property Gradle prefers. None of their
+# files are touched for this.
+JAVA_HOME="$(readlink -f "$HOME/.local/share/mise/installs/java/latest")"
+export JAVA_HOME
+
+DESTDIR= SKIP_ffmpeg=1 SKIP_libvpx=1 SKIP_opus=1 SKIP_lame=1 \
+GRADLE_OPTS="-Dorg.gradle.workers.max=$CORES -Dorg.gradle.java.home=$JAVA_HOME" \\
+  ./android.sh --arch=arm64-v8a --api-level=33 --jobs=$CORES \\
+  --no-output-redirection || {
+  # Their build log is the only place that says which step failed, and the work
+  # directory is removed when the node exits, so it is copied next to this recipe
+  # before the failure leaves it. --no-output-redirection keeps the console
+  # readable at the same time; without it everything but their progress line goes
+  # to build.log and the reason never reaches this run's log.
+  cp build.log $RECIPEDIR/ffmpeg-kit-next-failure.log 2>/dev/null || true
+  exit 1
+}
+
+# What this package hands over is the archive the build produced
+# (get_aar_directory in scripts/function-android.sh: bundle-android-aar-<api>-maven).
+mkdir -p $PREFIX/lib
+for _aar in $(find prebuilt -name *.aar); do
+  cp $_aar $PREFIX/lib/
+done
+unset _aar
+"""

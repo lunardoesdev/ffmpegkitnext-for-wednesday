@@ -1,0 +1,119 @@
+# FFmpeg for ffmpeg-kit-next, cross-built for Android. generic.toml's body with
+# the cross flags ffmpeg needs (see retrolunar2-packages/ffmpeg-7/android.toml).
+deps = ["zlib", "bzip2", "xz", "opus", "libvpx", "lame", "ffmpeg-kit-ffmpeg-7@source", "ffmpeg-kit-next-7@source"]
+buildsystem = "autoconf"
+
+# See generic.toml: the kit's source is copied under .kit/ rather than laid over
+# the FFmpeg release by the driver's @source copy.
+sources = false
+
+# Cross builds must be told the host: ffmpeg would otherwise assume
+# the build machine, and Bionic needs -DANDROID, which this system's
+# $CFLAGS already carries (ffmpeg ignores $CFLAGS on its own).
+configure_args = ["--prefix=$OUTPKG", "--enable-cross-compile", "--target-os=$HOST_OS", "--cc=$CC", "--cxx=$CXX", "--ar=$AR", "--ranlib=$RANLIB", "--strip=$STRIP", "--pkg-config-flags=--static", "--enable-static", "--enable-shared", "--disable-doc", "--disable-programs", "--disable-network", "--disable-iconv", "--disable-libxcb", "--enable-zlib", "--enable-bzlib", "--enable-lzma", "--enable-libopus", "--enable-libvpx", "--enable-libmp3lame", "--enable-pic", "--enable-jni"]
+
+pre = """
+cp -rf $NESTDIR/ffmpeg-kit-ffmpeg-7@source/. .
+mkdir -p .kit
+cp -rf $NESTDIR/ffmpeg-kit-next-7@source/. .kit/
+
+case "$HOST_ARCH" in
+    armv7a) ffmpeg_arch=arm ;;
+    i686) ffmpeg_arch=x86 ;;
+    *) ffmpeg_arch="$HOST_ARCH" ;;
+esac
+
+# The driver emits a recipe's fields *before* the recipe's own shell, so
+# --arch=$ffmpeg_arch written among the arguments above was expanded before this
+# case had run, which set -u reports as an unbound name:
+#   sh: line NN: ffmpeg_arch: unbound variable
+# (libvpx's --target=$vpx_arch has the same shape). The arch joins the arguments
+# here instead, where the name exists.
+BS_configure_args="$BS_configure_args --arch=$ffmpeg_arch"
+
+# ffmpeg's configure is hand-written (libav family) and knows no --host/--build:
+# the driver's $AUTOCONF_CONFIGURE_FLAGS carries both for the autotools
+# packages, and ffmpeg stops at the first of them with
+#   Unknown option "--host=aarch64-linux-android".
+# See ./configure --help for available options.
+# Cross builds here are the explicit pair --enable-cross-compile with
+# --arch/--target-os, so the driver's flags are trimmed to the install prefix,
+# which ffmpeg does take.
+AUTOCONF_CONFIGURE_FLAGS="--prefix=$OUTPKG"
+
+# The driver expands a list field unquoted, so an element holding spaces reaches
+# configure as several arguments and ffmpeg rejects the second word -
+#   Unknown option "-fPIC".
+# See ./configure --help for available options.
+# --extra-cflags is one of the few options ffmpeg *appends*, so the flags are
+# handed over one token at a time and add up to exactly what the system set.
+# The linker flags are left to ffmpeg's own target rules and the dependencies
+# are found through pkg-config, exactly as in generic.toml.
+for _f in $CFLAGS; do
+  BS_configure_args="$BS_configure_args --extra-cflags=$_f"
+done
+unset _f
+
+# ffmpeg-kit's own patches to FFmpeg, verbatim from scripts/android/ffmpeg.sh:411-435
+# (their `git checkout libavformat/file.c hls.c protocols.c libavutil` only undoes
+# a previous run's patching; the release tarball is pristine, so it is left out).
+# This tag (v7.1.0) sed's the release's own declaration: ffmpeg.sh:420 is
+#   ${SED_INLINE} 's/static int av_log_level/__thread int av_log_level/g' .../log.c
+# and 7.1.5 has exactly `static int av_log_level = AV_LOG_INFO;` (libavutil/log.c:56).
+# The `static atomic_int` form the later tags sed arrives with 8.1.3, the FFmpeg
+# those tags build - it is not this release's line.
+sed -i 's/static int av_log_level/__thread int av_log_level/g' libavutil/log.c
+
+# 2. The ffmpeg-kit protocols: ffkitsaf (Storage Access Framework), ffkitmem and
+# ffkitstream (in-memory and streaming I/O). Under this tag (v7.1.0) the four
+# files are plain .c/.h under tools/protocols (ffmpeg.sh:426-429); the .inc names
+# belong to the later tags. They define the URLProtocol objects and add them to
+# file.c's own protocol; the awk declares them in
+# libavformat/protocols.c, which is what puts them in the protocol list at all -
+# configure builds $PROTOCOL_LIST by scanning that file for
+# `extern ... ff_X_protocol;` lines (find_things_extern in configure) and then
+# enables every name it finds, so an added extern is an enabled protocol.
+cat .kit/tools/protocols/libavformat_file.c >> libavformat/file.c
+cat .kit/tools/protocols/libavformat_ffkitmem_stream.c >> libavformat/file.c
+cat .kit/tools/protocols/libavutil_file.h >> libavutil/file.h
+cat .kit/tools/protocols/libavutil_file.c >> libavutil/file.c
+awk '{gsub(/ff_file_protocol;/,"ff_file_protocol;\\nextern const URLProtocol ff_ffkitsaf_protocol;\\nextern const URLProtocol ff_ffkitmem_protocol;\\nextern const URLProtocol ff_ffkitstream_protocol;")}1' libavformat/protocols.c > libavformat/protocols.c.tmp
+cat libavformat/protocols.c.tmp > libavformat/protocols.c
+rm -f libavformat/protocols.c.tmp
+# Byte-for-byte the kit's own line: the shell has to see the backslash before
+# each quote and each pipe, so the TOML carries them escaped one more time.
+sed -i "s|av_strstart(proto_name, \\\"file\\\", NULL))|av_strstart(proto_name, \\\"file\\\", NULL) \\|\\| av_strstart(proto_name, \\\"ffkitsaf\\\", NULL) \\|\\| av_strstart(proto_name, \\\"ffkitmem\\\", NULL) \\|\\| av_strstart(proto_name, \\\"ffkitstream\\\", NULL))|g" libavformat/hls.c
+"""
+
+post = """
+# What the wrapper compiles against, out of the install. ffmpeg-kit's own
+# ffmpeg.sh does exactly this after `make install` (ffmpeg.sh:527-531: config.h
+# is copied in and the source tree's headers are mirrored over the installed
+# ones), and with SKIP_ffmpeg=1 none of it runs in its build:
+#   android/ffmpeg-kit-next-android-lib/src/main/cpp/ffmpegkit.c:31  #include "config.h"
+#   .../fftools/ffmpeg.h:106                                         #include "config.h"
+#   android/jni/Android.mk:        FFMPEG_INCLUDES := .../prebuilt/$(MY_BUILD_DIR)/ffmpeg/include
+#   android/jni/ffmpeg/Android.mk: LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/../include
+# so both have to land under include/ of what this package hands over: the
+# wrapper is not patched, it is given the headers it asks for.
+#
+# fftools/ rides along in the mirror and that is where it has to be:
+# `#include "fftools/ffmpeg.h"` is resolved against .../ffmpeg/include
+# (FFMPEG_INCLUDES for ffmpegkit_abidetect, and libavutil's exported includes for
+# the module that builds the kit's own fftools/ copies), so a top-level
+# $PREFIX/fftools would never be looked at. $PREFIX/include/fftools/ is what
+# their own build produces as well.
+#
+# -not -path './.kit/*' keeps the kit copy out of the mirror: it is here for
+# four files under tools/protocols/, and its own .h files are not headers of
+# this install.
+mkdir -p "$PREFIX/include"
+cp config.h "$PREFIX/include/config.h"
+find . -name '*.h' -not -path './.kit/*' -exec cp --parents -t "$PREFIX/include/" {} +
+"""
+
+make = true
+install = true
+targets = ""
+make_args = ""
+install_args = ""

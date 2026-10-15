@@ -1,0 +1,33 @@
+deps = ["libilbc@source"]
+buildsystem = "cmake"
+# The library libilbc.a, its two installed headers (ilbc.h and the ilbc_export.h
+# generate_export_header writes, CMakeLists.txt:310, 331) and libilbc.pc.
+#
+# BUILD_SHARED_LIBS=OFF: upstream defaults it ON (CMakeLists.txt:34-35) and a
+# cross target prefix has no loader path we control, so the archive has to be
+# asked for. ffmpeg-kit's own scripts/android/libilbc.sh passes
+# -DENABLE_STATIC=1 -DENABLE_SHARED=0 for the same purpose, but this
+# CMakeLists has no ENABLE_STATIC/ENABLE_SHARED options at all - those are
+# ignored, and BUILD_SHARED_LIBS is the switch that works.
+#
+# Nothing else needs switching off. ilbc_test and ilbc_test2
+# (CMakeLists.txt:314, 317) are executables: a cross build compiles and links
+# them and never runs them, which is allowed. The two rules that would *run* a
+# target binary are the add_custom_target pairs at CMakeLists.txt:320-324
+# (ilbc_test-sample / ilbc_test2-sample, which upstream's CI invokes with
+# `cmake --build ... -t`); they carry no ALL, so they are not part of the
+# default build and `cmake --build build` never reaches them. This is the
+# reason the recipe does not have to disable tests, only to leave them alone.
+#
+# CMAKE_SYSTEM_PROCESSOR is aarch64: this system's toolchain file sets it, so
+# CMakeLists.txt:108 takes the ARM64 branch: ARM64 and WITH_NEON are set and
+# WEBRTC_ARCH_ARM64 is defined, while the 32-bit ARM branch
+# (CMakeLists.txt:115-130) that would call enable_language(ASM) and
+# check_c_source_compiles is not reached. The NEON sources are pure C and are
+# built by the NDK's own clang.
+#
+# Nothing here is a fact about Android, so there is no android.toml: the driver
+# passes --host and the toolchain file gives cmake the compilers and the sysroot,
+# and the project has no Android-only switch worth setting (ffmpeg-kit passes
+# -DWEBRTC_ANDROID=1 -DUNIX=1, which this CMakeLists does not read).
+args = ["-DBUILD_SHARED_LIBS=OFF"]

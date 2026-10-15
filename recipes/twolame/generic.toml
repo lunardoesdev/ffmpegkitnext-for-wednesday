@@ -1,0 +1,51 @@
+deps = ["twolame@source"]
+buildsystem = "autoconf"
+# The library (libtwolame.a), its header twolame.h and twolame.pc - no programs.
+#
+# --disable-sndfile is the switch that matters. configure.ac:103-118 only looks
+# for libsndfile under `if test "${enable_sndfile}" != "no"`, and
+# configure.ac:139-149 makes TWOLAME_BIN non-empty only when it was found, so
+# this both drops a dependency this tree does not carry and empties
+# bin_PROGRAMS in frontend/Makefile.am - the `twolame` command-line encoder is
+# not built at all. The option is an AC_ARG_ENABLE(sndfile) whose default is
+# enabled, so it has to be named here rather than left to the default; without
+# it configure probes pkg-config and then -lsndfile and warns its way through.
+#
+# What cannot be switched off is harmless. simplefrontend/Makefile.am:5 has
+# `noinst_PROGRAMS = stwolame` unconditionally, so that test program is compiled
+# and linked even here; it is a noinst program, never installed and never run -
+# a cross build only produces its objects.
+#
+# doc/ builds nothing from this tarball: doc/Makefile.am:9 sets
+# dist_man_MANS = twolame.1 and the file is shipped, while the docbook rules that
+# could regenerate it sit under `if MAINTAINER_MODE`, which AM_MAINTAINER_MODE
+# leaves off (the generated configure:3065 falls back to USE_MAINTAINER_MODE=no)
+# - and the tarball carries no doc/twolame.1.xml for them to work from. This is
+# the one place where a recipe here differs from what ffmpeg-kit's own build
+# needed: its scripts/android/twolame.sh seds dist_man_MANS out of doc/Makefile
+# because that build runs autogen.sh on a git checkout, where maintainer mode is
+# on and asciidoc/xmlto are missing. Building the release tarball needs no patch
+# of upstream.
+#
+# tests/ is only entered for `make check`, never for `make`/`make install`
+# (tests/Makefile.am), so nothing host-runnable is produced either.
+#
+# --enable-static --with-pic --disable-shared: a target prefix has no loader path
+# for a versioned object, so only the archive is wanted, and it is built
+# position-independent because ffmpeg-kit links these archives into its own
+# shared libav*.so wrappers.
+configure_args = ["--enable-static", "--disable-shared", "--with-pic", "--disable-sndfile"]
+
+# The driver's fields are asserted rather than left to their defaults: the
+# emitted block reads BS_make="${BS_make:-}" for any field a recipe does not
+# define, and a generated script builds every node in one process, so a node
+# inherits whatever the node before it left behind. A sibling recipe in this tree
+# (openh264, whose own post does its building) sets make = false / install =
+# false, and a package that followed it in one script would otherwise skip its
+# build and install steps in silence and publish an empty directory while
+# exiting 0.
+make = true
+install = true
+targets = ""
+make_args = ""
+install_args = ""

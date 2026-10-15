@@ -1,0 +1,81 @@
+deps = ["openh264@source"]
+buildsystem = "make"
+# The H.264 codec library: libopenh264.a, its headers under include/wels and
+# openh264.pc. The build is a hand-written Makefile, not autoconf and not cmake,
+# so a recipe that just named the build system would build the wrong things three
+# times over.
+#
+# make = false / install = false, so the driver adds neither of its steps:
+#
+#   * The build step would run `make CC=... CFLAGS=... libopenh264.a`, and a
+#     command-line assignment switches off every `CFLAGS +=` in this Makefile:
+#     GNU make ignores makefile assignments, appends included, to a variable that
+#     came from the command line. What would be lost is everything the project
+#     adds to the flags it compiles with - -fno-strict-aliasing and -fPIC
+#     (build/platform-gnu-chain.mk:6), -fstack-protector-all
+#     (build/platform-gnu-chain.mk:7-9, USE_STACK_PROTECTOR=Yes at Makefile:37),
+#     -O3 (CFLAGS_OPT, Makefile:20, added at :58) and -DNDEBUG (:59), and the
+#     arm64 -march=armv8-a and -DHAVE_NEON_AARCH64 (build/arch.mk, reached from
+#     platform-gnu-chain.mk:1). Compiling this codec at -O2 without
+#     -fno-strict-aliasing is not the build upstream tested. The toolchain
+#     therefore arrives as make arguments ($CC, $CXX, $AR, $RANLIB, ARCH) and
+#     CFLAGS/CXXFLAGS/LDFLAGS come from the environment, where the Makefile's
+#     appends land.
+#   * `make install` is `install-static-lib install-shared` (Makefile:331), so it
+#     links and installs the shared object as well. The archive is what a cross
+#     target wants, and openh264 has a target for exactly that: install-static
+#     (Makefile:314) installs the archive, the headers and the pkgconfig file. It
+#     is spelled in `post` because the driver's install step always ends in
+#     `install`.
+#
+# libopenh264.a by name, not the default `all` and not `libraries`: `all` is
+# `libraries binaries` (Makefile:83), and `binaries` is not empty even in a
+# release tarball without gtest - the console targets included for every OS but
+# android/ios/mingw-wp attach h264enc (codec/console/enc/targets.mk) and h264dec
+# (codec/console/dec/targets.mk) to it, so the default goal builds two codec
+# applications that are target binaries this host must not run. `libraries`
+# additionally links libopenh264.so. The archive alone is the package.
+#
+# ARCH=$HOST_ARCH: openh264 picks its assembly from `uname -m` (Makefile:11 into
+# build/arch.mk), so a cross build would take the x86 branch on an x86_64 host -
+# nasm sources and -m64 - for an aarch64 target. HOST_ARCH is the arch the
+# Makefile's filters want to hear (build/arch.mk matches arm64, aarch64 and arm64e
+# for the arm64 branch). It is also right for a native build, where it equals what
+# uname reports.
+#
+# OS is left at its default (Makefile:10, `uname`), which on this host is linux
+# and so selects build/platform-linux.mk -> build/platform-gnu-chain.mk. That is
+# the branch whose STATIC_LDFLAGS is `-lpthread -lm`, the flag android.toml has to
+# take out of the installed pkgconfig file; the alternative in ffmpeg-kit's own
+# build, OS=android, would pull in platform-android.mk and with it the NDK's
+# cpu-features and an NDK utilities path this recipe does not need.
+#
+# PREFIX=$OUTPKG (not $PREFIX): install-static writes openh264.pc, whose prefix is
+# $(PREFIX) (Makefile:303), and a .pc names the directory its entry lives in.
+# DESTDIR is what routes the install through the stage.
+#
+# Both make lines carry ARCH and the toolchain, and that is not belt and braces:
+# `install-static` depends on the archive, so make recomputes
+# ENCODER_OBJS/DECODER_OBJS/... in that second run too. An invocation that does
+# not repeat ARCH falls back to `ARCH=$(shell uname -m)` (Makefile:11), takes the
+# x86 branch, puts the x86 .asm objects back into the archive's prerequisites and
+# dies with `nasm: No such file or directory` on codec/encoder/core/x86/coeff.o -
+# observed, not guessed.
+#
+# This recipe's make = false / install = false is also why the autoconf recipes
+# in this tree (twolame, speex, shine, vo-amrwbenc, opencore-amr) assert their
+# own make/install/targets/make_args/install_args instead of leaving them out:
+# the emitted block defaults a field with `${BS_make:-}` rather than resetting
+# it, so the "false" set here is still set when the next node starts, and that
+# node would skip its steps in silence. openh264 has to set the two, and the
+# followers have to speak for themselves.
+make = false
+install = false
+post = """
+make -j"$CORES" ARCH="$HOST_ARCH" \
+  CC="$CC" CXX="$CXX" AR="$AR" RANLIB="$RANLIB" \
+  libopenh264.a
+make DESTDIR="$DESTDIR" PREFIX="$OUTPKG" LIBDIR_NAME=lib \
+  ARCH="$HOST_ARCH" CC="$CC" CXX="$CXX" AR="$AR" RANLIB="$RANLIB" \
+  install-static
+"""

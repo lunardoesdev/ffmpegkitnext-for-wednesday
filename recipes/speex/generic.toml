@@ -1,0 +1,36 @@
+deps = ["speex@source"]
+buildsystem = "autoconf"
+# The library libspeex.a, its headers and speex.pc - no programs.
+#
+# --disable-binaries is the switch that matters. configure.ac:167-173 makes
+# BUILD_BINARIES false for it (or when libogg is not found), and
+# Makefile.am:19-20 adds `src` to SUBDIRS only under `if BUILD_BINARIES`. src/ is
+# what builds speexenc and speexdec (src/Makefile.am:17), and they are the only
+# things in the tarball that link anything outside it - $(OGG_LIBS) and
+# $(SPEEXDSP_LIBS). Turning them off drops two target binaries nothing here could
+# run and leaves speex with no dependency at all: the library proper links only
+# $(LIBM) (libspeex/Makefile.am:43), which the Android system already carries.
+#
+# include/ (headers) and doc/ (a shipped manual.pdf, doc/Makefile.am) stay in
+# SUBDIRS harmlessly; win32/, symbian/ and ti/ are alternate-platform build files
+# with no programs of their own (Makefile.am:18).
+#
+# --enable-static --with-pic --disable-shared: a target prefix has no loader path
+# for a versioned object, so only the archive is wanted, and it is
+# position-independent because it is meant to be linked into shared libraries
+# later (ffmpeg-kit's libav*.so).
+configure_args = ["--enable-static", "--disable-shared", "--with-pic", "--disable-binaries"]
+
+# The driver's fields are asserted rather than left to their defaults: the
+# emitted block reads BS_make="${BS_make:-}" for any field a recipe does not
+# define, and a generated script builds every node in one process, so a node
+# inherits whatever the node before it left behind. A sibling recipe in this tree
+# (openh264, whose own post does its building) sets make = false / install =
+# false, and a package that followed it in one script would otherwise skip its
+# build and install steps in silence and publish an empty directory while
+# exiting 0.
+make = true
+install = true
+targets = ""
+make_args = ""
+install_args = ""

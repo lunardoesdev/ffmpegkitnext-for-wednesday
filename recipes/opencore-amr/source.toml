@@ -1,0 +1,20 @@
+# opencore-amr 0.1.6 - the AMR-NB and AMR-WB codec libraries, from upstream's
+# own SourceForge release directory. 0.1.6 is the newest release there and the
+# version ffmpeg-kit pins.
+#
+# The release tarball ships a generated ./configure with aclocal.m4 and every
+# Makefile.in, so nothing here has to run autotools. It carries one leading
+# directory (opencore-amr-0.1.6/) and unpacks with --strip-components=1.
+version = "0.1.6"
+
+build = """
+mkdir -p dl
+if [ ! -f dl/opencore-amr.tar.gz ]; then
+  curl -fSL -C - -o dl/opencore-amr.tar.gz "https://downloads.sourceforge.net/project/opencore-amr/opencore-amr/opencore-amr-0.1.6.tar.gz"
+fi
+rm -rf src
+mkdir -p src
+tar -xzf dl/opencore-amr.tar.gz -C src --strip-components=1
+mkdir -p $PREFIX
+cp -r src/* $PREFIX/
+"""

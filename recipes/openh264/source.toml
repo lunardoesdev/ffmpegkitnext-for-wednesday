@@ -1,0 +1,22 @@
+# openh264 2.6.0 - Cisco's H.264 encoder and decoder library. Upstream tags as
+# v<major>.<minor>.<patch> and the GitHub archive of the tag carries one leading
+# directory (openh264-2.6.0/), so it unpacks with --strip-components=1 like the
+# other GitHub-archive recipes here.
+#
+# 2.6.0 is the newest release of upstream; ffmpeg-kit's own build pins v2.3.1 of
+# its arthenica fork, so this recipe is deliberately ahead of that one - the
+# Makefile it is built with is the same shape (see generic.toml for the line
+# numbers, which belong to 2.6.0).
+version = "2.6.0"
+
+build = """
+mkdir -p dl
+if [ ! -f dl/openh264.tar.gz ]; then
+  curl -fSL -C - -o dl/openh264.tar.gz "https://github.com/cisco/openh264/archive/refs/tags/v2.6.0.tar.gz"
+fi
+rm -rf src
+mkdir -p src
+tar -xzf dl/openh264.tar.gz -C src --strip-components=1
+mkdir -p $PREFIX
+cp -r src/* $PREFIX/
+"""

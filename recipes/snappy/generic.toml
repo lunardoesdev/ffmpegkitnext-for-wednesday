@@ -1,0 +1,22 @@
+deps = ["snappy@source"]
+buildsystem = "cmake"
+# libsnappy.a, its headers (snappy.h, snappy-c.h, ... and the generated
+# snappy-stubs-public.h under build/), snappy.pc and snappy-config.cmake, which
+# is all CMakeLists.txt's install rules write.
+#
+# SNAPPY_BUILD_TESTS and SNAPPY_BUILD_BENCHMARKS both default ON
+# (CMakeLists.txt:94, :96) and are the switches that matter: CMakeLists.txt:288
+# gives tests and benchmarks their own add_executable for a package whose
+# deliverable is a library, and the benchmark link additionally probes zlib and
+# lzo2 (CMakeLists.txt:118-119 check_library_exists, then :307-312). With both
+# off, tests/ and the benchmark subdirectories are never entered and those probes
+# are never run - the package needs no dependency on zlib or lzo2 at all. This is
+# also why ffmpeg-kit's own scripts/android/snappy.sh can pass -DHAVE_LIBZ=0 and
+# -DHAVE_LIBLZO2=0: it is caching the same probes, which this recipe avoids by
+# not entering the code that runs them.
+#
+# BUILD_SHARED_LIBS is already OFF by upstream's default (CMakeLists.txt:92),
+# while every sibling package in this tree has to ask for it - the flag is kept
+# so the intent is stated rather than inherited, and so a future upstream default
+# cannot quietly turn this into a shared library a target prefix cannot load.
+args = ["-DBUILD_SHARED_LIBS=OFF", "-DSNAPPY_BUILD_TESTS=OFF", "-DSNAPPY_BUILD_BENCHMARKS=OFF"]

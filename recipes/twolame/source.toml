@@ -1,0 +1,21 @@
+# twolame 0.4.0 - the MPEG Audio Layer II (MP2) encoder library. The source is
+# the release tarball from upstream's own SourceForge release directory, which
+# is what the version names: it ships a generated ./configure (autoconf 2.69)
+# together with aclocal.m4 and every Makefile.in, so the build never needs
+# autotools - which these systems do not carry on purpose.
+#
+# downloads.sourceforge.net is the project's redirector rather than a mirror
+# hostname, so the file follows wherever SourceForge sends it today.
+version = "0.4.0"
+
+build = """
+mkdir -p dl
+if [ ! -f dl/twolame.tar.gz ]; then
+  curl -fSL -C - -o dl/twolame.tar.gz "https://downloads.sourceforge.net/project/twolame/twolame/0.4.0/twolame-0.4.0.tar.gz"
+fi
+rm -rf src
+mkdir -p src
+tar -xzf dl/twolame.tar.gz -C src --strip-components=1
+mkdir -p $PREFIX
+cp -r src/* $PREFIX/
+"""

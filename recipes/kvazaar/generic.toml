@@ -1,0 +1,39 @@
+deps = ["kvazaar@source"]
+buildsystem = "cmake"
+# The HEVC encoder library libkvazaar.a, its header kvazaar.h, kvazaar.pc and
+# the man page.
+#
+# BUILD_SHARED_LIBS=OFF: upstream defaults it ON (CMakeLists.txt:9) and a target
+# prefix has no loader path we control, so the archive is asked for
+# (CMakeLists.txt:197 add_library(kvazaar STATIC)). The installed file keeps the
+# target's name, libkvazaar.a.
+#
+# BUILD_TESTS=OFF (CMakeLists.txt:11, ON upstream) keeps tests/ out of the build:
+# CMakeLists.txt:427 enters that subdirectory only `if(EXISTS
+# greatest/greatest.h AND BUILD_TESTS)`. The GitHub tag archive ships greatest/
+# as an empty directory, so it would not be built here even by default, and the
+# switch says so instead of relying on that.
+#
+# BUILD_KVAZAAR_BINARY=OFF (CMakeLists.txt:15) drops the command-line encoder:
+# add_executable(kvazaar-bin ...) at CMakeLists.txt:218 and its install rule at
+# :337 are both guarded by that option, which 2.3.2 added - in 2.3.1 the
+# executable was unconditional, which is why the sibling recipe in the tree has
+# to build and install a bin/kvazaar this one does not need. Nothing here runs a
+# target binary, and this package's deliverable is the library.
+#
+# Nothing here is android-specific, so there is no android.toml. One hazard is
+# worth knowing about: CMakeLists.txt:263 adds `-Wa,-muse-unaligned-vector-move`
+# (an assembler option this NDK clang refuses: "unsupported argument ... to
+# option '-Wa,'") whenever
+# `(NOT MSVC AND NOT LINUX AND NOT APPLE AND NOT ANDROID AND NOT EMSCRIPTEN AND
+# NOT BSD) OR (CYGWIN OR MSYS OR MINGW)`. This system's toolchain file sets
+# CMAKE_SYSTEM_NAME Linux on purpose, so LINUX is true and the flag is not added.
+# Setting CMAKE_SYSTEM_NAME to Android in a recipe would break the build with
+# exactly that error, and would also take the `if(NOT ANDROID ...)` branch at
+# CMakeLists.txt:268 that skips find_package(Threads) - which is fine on Bionic,
+# but is not the build this tree has exercised.
+#
+# The Threads find at CMakeLists.txt:268-270 links Threads::Threads, and the
+# system's CMAKE_FLAGS carry -DTHREADS_PREFER_PTHREAD_FLAG=ON, so it resolves to
+# -pthread, which is what Bionic wants (it keeps pthreads in libc).
+args = ["-DBUILD_SHARED_LIBS=OFF", "-DBUILD_TESTS=OFF", "-DBUILD_KVAZAAR_BINARY=OFF"]

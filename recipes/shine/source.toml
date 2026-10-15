@@ -1,0 +1,21 @@
+# shine 3.1.1 - the fixed-point MP3 (MPEG-1/2 layer III) encoder library. The
+# source is the tarball attached to upstream's own GitHub release, not the tag
+# archive: it is a `make dist` product and therefore the one that ships a
+# generated ./configure (autoconf 2.69) next to configure.ac, plus every
+# generated Makefile.in. The git tree is what ffmpeg-kit's build checks out and
+# has to run autoreconf/autogen on; the release tarball does not.
+#
+# 3.1.1 is the newest tag upstream has, and it is the version ffmpeg-kit pins.
+version = "3.1.1"
+
+build = """
+mkdir -p dl
+if [ ! -f dl/shine.tar.gz ]; then
+  curl -fSL -C - -o dl/shine.tar.gz "https://github.com/toots/shine/releases/download/3.1.1/shine-3.1.1.tar.gz"
+fi
+rm -rf src
+mkdir -p src
+tar -xzf dl/shine.tar.gz -C src --strip-components=1
+mkdir -p $PREFIX
+cp -r src/* $PREFIX/
+"""

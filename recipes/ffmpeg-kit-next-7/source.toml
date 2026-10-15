@@ -1,0 +1,18 @@
+version = "7.1.0"
+tag = "v7.1.0"
+
+build = """
+# The build this source serves runs git itself (android.sh:39 reads
+# `git describe --tags --always` to name the build), so the checkout keeps its
+# .git directory - hence the trailing /. when it is copied
+mkdir -p dl
+if [ ! -d dl/ffmpeg-kit-next/.git ]; then
+  rm -rf dl/ffmpeg-kit-next
+  git clone --depth 1 --branch "$tag" https://github.com/arthenica/ffmpeg-kit-next dl/ffmpeg-kit-next
+fi
+rm -rf src
+mkdir -p src
+cp -rf dl/ffmpeg-kit-next/. src/
+mkdir -p $PREFIX
+cp -rf src/. $PREFIX/
+"""

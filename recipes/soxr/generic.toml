@@ -1,0 +1,50 @@
+deps = ["soxr@source"]
+buildsystem = "cmake"
+# Static libsoxr.a (and libsoxr-lsr.a, see below), its header soxr.h and
+# soxr.pc. soxr has no autotools build at all, so there is no ./configure and no
+# config header template to guard - CMake is the only way in.
+#
+# BUILD_TESTS defaults ON (CMakeLists.txt:43) and is the switch that matters:
+# tests/CMakeLists.txt globs every tests/*.c and gives each its own
+# add_executable, so the default builds five target binaries for a package whose
+# deliverable is a library. CMakeLists.txt:265 gates that subdirectory on
+# `NOT CMAKE_CROSSCOMPILING AND (BUILD_TESTS OR BUILD_LSR_TESTS)`, so a cross
+# build would skip them anyway - the flag is stated so the build is the same as
+# the one a native run would produce, and so nothing has to depend on how cmake
+# decides it is cross-compiling.
+#
+# BUILD_EXAMPLES defaults OFF (CMakeLists.txt:44) and is named for the same
+# reason: CMakeLists.txt:288 drags the examples back in whenever BUILD_TESTS is
+# on, and they need a C++ compiler (CMakeLists.txt:104) that a C-only package
+# should not have to have.
+#
+# BUILD_LSR_TESTS (CMakeLists.txt:72) is already suppressed on a cross build by
+# its own dependent-option condition, and by `EXISTS lsr-tests/` before that;
+# stated so the intent is in the file.
+#
+# BUILD_SHARED_LIBS defaults ON (CMakeLists.txt:48) and a target prefix has no
+# loader path for a versioned object, so static only.
+#
+# WITH_OPENMP defaults ON (CMakeLists.txt:45) and find_package(OpenMP) would then
+# append -fopenmp to the compile line. The resampler is single-threaded and this
+# tree does not build OpenMP, so that option would only make the compiled result
+# depend on whether OpenMP happened to be found on the build host.
+#
+# WITH_LSR_BINDINGS stays ON (CMakeLists.txt:46): it is a second shipped library,
+# libsoxr-lsr (src/CMakeLists.txt:100-118), not a test. ffmpeg-kit's own
+# scripts/android/soxr.sh passes -DWITH_LSR_BINDINGS=0 because it only wants the
+# resampler ffmpeg links; the archive costs nothing here and dropping it would
+# change the .pc files, so it is left on.
+#
+# WITH_PFFFT (CMakeLists.txt:66) also stays at its default, which is ON whenever
+# WITH_CR32S is (it is): it is the SIMD DFT backend the HQ engines use and the
+# reason ffmpeg-kit spells -DWITH_PFFFT=1 out loud - naming the default here
+# would be the same build with more words.
+#
+# Nothing is compiled and run on the build host. The one executable soxr would
+# otherwise generate, vr-coefs, is guarded by
+# `if (NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/vr-coefs.h)`
+# (src/CMakeLists.txt:8), and the tag archive ships that header (5,336 bytes), so
+# the generator is never even built - which is what src/CMakeLists.txt:6 means by
+# "it complicates cross-compiling".
+args = ["-DBUILD_SHARED_LIBS=OFF", "-DBUILD_TESTS=OFF", "-DBUILD_EXAMPLES=OFF", "-DBUILD_LSR_TESTS=OFF", "-DWITH_OPENMP=OFF"]

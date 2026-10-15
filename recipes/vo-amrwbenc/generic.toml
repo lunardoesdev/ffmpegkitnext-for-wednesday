@@ -1,0 +1,40 @@
+deps = ["vo-amrwbenc@source"]
+buildsystem = "autoconf"
+# One archive, libvo-amrwbenc.a, its header enc_if.h under include/vo-amrwbenc
+# and vo-amrwbenc.pc.
+#
+# --disable-example is the switch that matters: Makefile.am:111-113 puts
+# amrwb-enc in bin_PROGRAMS only under `if EXAMPLE`, and configure.ac:20-23 makes
+# --enable-example default to no, so the command-line encoder is not built at
+# all. The flag is spelled out so the fact is stated rather than inherited from
+# upstream's default.
+#
+# --disable-armv5e and --disable-armv7neon: both default to no
+# (configure.ac:12-19) and both only add hand-written .s files for *32-bit* ARM
+# (Makefile.am:77-105, ARMV7NEON and ARMV5E), which are not what aarch64
+# assembles; leaving them off is what keeps this a pure C build. ffmpeg-kit's own
+# scripts/android/vo-amrwbenc.sh turns --enable-armv7neon on for the arm-v7a-neon
+# arch and passes nothing for arm64-v8a, which is the same decision. The switches
+# are named here so a reader sees the assembler was considered, and because
+# turning either on is the one thing that would make this recipe
+# architecture-specific.
+#
+# --enable-static --with-pic --disable-shared: a cross target prefix has no
+# loader path we control, so only the archive is wanted, and it is
+# position-independent because it is meant to be linked into shared libraries
+# later. All three are libtool switches, provided by LT_INIT.
+configure_args = ["--enable-static", "--disable-shared", "--with-pic", "--disable-example", "--disable-armv5e", "--disable-armv7neon"]
+
+# The driver's fields are asserted rather than left to their defaults: the
+# emitted block reads BS_make="${BS_make:-}" for any field a recipe does not
+# define, and a generated script builds every node in one process, so a node
+# inherits whatever the node before it left behind. A sibling recipe in this tree
+# (openh264, whose own post does its building) sets make = false / install =
+# false, and a package that followed it in one script would otherwise skip its
+# build and install steps in silence and publish an empty directory while
+# exiting 0.
+make = true
+install = true
+targets = ""
+make_args = ""
+install_args = ""
