@@ -82,12 +82,19 @@ JAVA_HOME="$(readlink -f "$JAVA_HOME")"
 }
 export JAVA_HOME
 
+# Neither daemon may outlive this build: both end up swallowed by swap here, and the
+# next heavy link is then killed by the OOM killer. gradle.properties is where Gradle
+# reads these, and it is appended to in the WORKING COPY under the work dir - their
+# repository is not touched. in-process compiles the Kotlin sources inside the Gradle
+# JVM, so no second compiler JVM is left behind at all. GRADLE_OPTS did not do it: the
+# property set there never reached their gradlew.
+printf '%s\n' \
+  'org.gradle.daemon=false' \
+  'kotlin.compiler.execution.strategy=in-process' \
+  >> android/gradle.properties
+
 DESTDIR= SKIP_ffmpeg=1 SKIP_libvpx=1 SKIP_opus=1 SKIP_lame=1 \
-# The daemon is off: it never exits on its own here, ends up swallowed by swap,
-# and the next FFmpeg link is then killed by the OOM killer. Their scripts are the
-# ones that invoke gradlew, so the property is the way in - there is no command
-# line of ours to add --no-daemon to.
-GRADLE_OPTS="-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=$CORES -Dorg.gradle.java.home=$JAVA_HOME" \\
+GRADLE_OPTS="-Dorg.gradle.workers.max=$CORES -Dorg.gradle.java.home=$JAVA_HOME" \\
   # v7.1.0 has no android.sh. Its plain entry point is scripts/start-android.sh
   # (nix-android.sh calls exactly that), and architecture there uses the older
   # one-ABI-at-a-time spelling, so arm64-v8a is what is left after disabling the
