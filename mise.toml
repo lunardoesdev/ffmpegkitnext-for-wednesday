@@ -1,0 +1,3 @@
+[tools]
+android-sdk = "23.0"
+java = "21"
