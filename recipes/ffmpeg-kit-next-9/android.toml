@@ -87,8 +87,9 @@ printf '%s\n' \
   >> android/gradle.properties
 
 DESTDIR= SKIP_ffmpeg=1 SKIP_libvpx=1 SKIP_opus=1 SKIP_lame=1 \
-GRADLE_OPTS="-Dorg.gradle.workers.max=$CORES -Dorg.gradle.java.home=$JAVA_HOME" \\
-  ./android.sh --arch=arm64-v8a --api-level=33 --jobs=$CORES \\
+GRADLE_OPTS="-Dorg.gradle.workers.max=$CORES -Dorg.gradle.java.home=$JAVA_HOME" \
+  ./android.sh --arch=arm64-v8a --api-level=33 --jobs=$CORES \
+  --skip=ffmpeg --skip=libvpx --skip=opus --skip=lame \
   --no-output-redirection || {
   # Their build log is the only place that says which step failed, and the work
   # directory is removed when the node exits, so it is copied next to this recipe
