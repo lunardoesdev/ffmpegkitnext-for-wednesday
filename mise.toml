@@ -1,3 +1,65 @@
 [tools]
 android-sdk = "23.0"
 java = "21"
+
+# Building the Android archives.
+#
+# The recipes that drive the build live in this checkout under recipes/ - they
+# are what puts OUR packaged FFmpeg (and libvpx/opus/lame) into the archive
+# instead of the copies the upstream build would vendor. Nothing here points at
+# a directory only one machine has: everything retrolunar needs beyond this
+# checkout - its packages tree, its nest - it fetches or creates itself.
+[tasks.aar]
+description = "Build one ffmpeg-kit-next .aar into dist/ (arg: 7, 8 or 9)"
+run = '''
+#!/usr/bin/env bash
+set -euo pipefail
+v="${1:-}"
+case "$v" in 7|8|9) ;; *) echo "usage: mise run aar -- <7|8|9>" >&2; exit 2 ;; esac
+
+root="{{config_root}}"
+recipes="$root/recipes"
+[ -d "$recipes/ffmpeg-kit-next-$v" ] || {
+  echo "recipes/ffmpeg-kit-next-$v is missing." >&2
+  echo "The recipes live in this repository under recipes/; a plain checkout of" >&2
+  echo "upstream does not carry them, and without them the build vendors its own" >&2
+  echo "FFmpeg instead of using the packaged one." >&2
+  exit 1
+}
+command -v retrolunar >/dev/null 2>&1 || {
+  echo "retrolunar is not in PATH - it resolves and builds the whole closure." >&2
+  exit 1
+}
+
+# --cores 1: one build at a time, one thread at a time. The closure shares a
+# single nest, and parallel nodes fight over it (and over the machine).
+nest="${RETROLUNAR_NEST:-$HOME/.cache/retrolunar/nestdir}"
+retrolunar install --cores 1 --nest "$nest" --repo "kit=$recipes" \
+  "ffmpeg-kit-next-$v@aarch64-android33" | sh
+
+# Hand the archive over. The build already puts it at lib/ inside the nest
+# entry; take it from there rather than from the work directory, which is gone
+# by now.
+entry="$nest/ffmpeg-kit-next-$v@aarch64-android33/lib"
+aar="$(find -L "$entry" -name '*.aar' 2>/dev/null | head -1)"
+[ -n "$aar" ] || { echo "no .aar under $entry - the build handed nothing over" >&2; exit 1; }
+mkdir -p "$root/dist"
+cp "$aar" "$root/dist/"
+
+# Verify the artifact, not the log line: an archive is a zip, and a real one
+# carries the shared libraries.
+unzip -l "$root/dist/$(basename "$aar")" | grep -c "jni/arm64-v8a/.*\.so" \
+  | sed 's/^/shared libraries in the archive: /'
+echo "==> $root/dist/$(basename "$aar")"
+'''
+
+[tasks.aars]
+description = "Build all three .aar (7, 8, 9) into dist/, one after another"
+run = '''
+#!/usr/bin/env bash
+set -euo pipefail
+for v in 7 8 9; do
+  echo "=== ffmpeg-kit-next $v ==="
+  mise run aar "$v"
+done
+'''
