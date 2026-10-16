@@ -70,7 +70,12 @@ export JAVA_HOME
 
 DESTDIR= SKIP_ffmpeg=1 SKIP_libvpx=1 SKIP_opus=1 SKIP_lame=1 \
 GRADLE_OPTS="-Dorg.gradle.workers.max=$CORES -Dorg.gradle.java.home=$JAVA_HOME" \\
-  ./android.sh --arch=arm64-v8a --api-level=33 --jobs=$CORES \\
+  # v8.1.1 has no android.sh either: the plain entry point is
+  # scripts/start-android.sh (what nix-android.sh calls), and architecture there
+  # uses the older one-ABI-at-a-time spelling. The root android.sh appears only
+  # in v9.0.0.
+  ./scripts/start-android.sh --disable-arm-v7a --disable-arm-v7a-neon \
+  --disable-x86 --disable-x86-64 --api-level=33 --jobs=$CORES \\
   --no-output-redirection || {
   # Their build log is the only place that says which step failed, and the work
   # directory is removed when the node exits, so it is copied next to this recipe

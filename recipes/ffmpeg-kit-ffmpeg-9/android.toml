@@ -14,7 +14,8 @@ configure_args = ["--prefix=$OUTPKG", "--enable-cross-compile", "--target-os=$HO
 
 pre = """
 cp -rf $NESTDIR/ffmpeg-kit-ffmpeg-9@source/. .
-cp -rf $NESTDIR/ffmpeg-kit-next-9@source/. .kit
+mkdir -p .kit
+cp -rf $NESTDIR/ffmpeg-kit-next-9@source/. .kit/
 
 case "$HOST_ARCH" in
     armv7a) ffmpeg_arch=arm ;;

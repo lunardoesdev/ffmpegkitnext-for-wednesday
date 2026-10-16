@@ -57,10 +57,22 @@ cp -rf $NESTDIR/ffmpeg-kit-ffmpeg-7@aarch64-android33/include prebuilt/android-a
 # message.
 # Gradle needs a JDK, and this host's default java is a JRE without javac
 # (/usr/lib/jvm/java-25-openjdk: "does not provide the required capabilities:
-# [JAVA_COMPILER]"). mise's java is the JDK, so JAVA_HOME points there and is
-# repeated as org.gradle.java.home, the property Gradle prefers. None of their
-# files are touched for this.
-JAVA_HOME="$(readlink -f "$HOME/.local/share/mise/installs/java/latest")"
+# [JAVA_COMPILER]"). It also needs a JDK it can READ: the wrapper every tag pins
+# is Gradle 8.14.5, whose Groovy/ASM stop at class file 69, so under this host's
+# global Java 26 the first compilation of a build script dies with
+#   BUG! exception in phase 'semantic analysis' in source unit '_BuildScript_'
+#   Unsupported class file major version 70
+# The project therefore pins a Java the build supports the same way it pins the
+# SDK (see .mise.toml in the checkout: java = 21), and JAVA_HOME points at that
+# install - the newest 21 mise has, so bumping the patch release changes nothing
+# here. org.gradle.java.home repeats it because Gradle prefers the property over
+# the environment. None of their files are touched for this.
+JAVA_HOME="$(ls -d "$HOME"/.local/share/mise/installs/java/21* 2>/dev/null | sort -V | tail -1)"
+JAVA_HOME="$(readlink -f "$JAVA_HOME")"
+[ -x "$JAVA_HOME/bin/javac" ] || {
+  echo "no JDK 21 at '$JAVA_HOME' — install it with: mise install java@21 (see .mise.toml)"
+  exit 1
+}
 export JAVA_HOME
 
 DESTDIR= SKIP_ffmpeg=1 SKIP_libvpx=1 SKIP_opus=1 SKIP_lame=1 \

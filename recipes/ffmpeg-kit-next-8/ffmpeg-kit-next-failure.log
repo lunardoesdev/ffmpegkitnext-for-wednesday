@@ -1,0 +1,1759 @@
+
+INFO: Using Android NDK v29.0.14206865 provided at /home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865
+
+INFO: Build options: --disable-arm-v7a --disable-arm-v7a-neon --disable-x86 --disable-x86-64 --api-level=33 --jobs=1 --no-output-redirection
+
+INFO: Using Android toolchain at /home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64
+
+INFO: Building ffmpeg-kit-next v8.1.1 library for Android: Fri Oct 16 01:34:43 AM +10 2026
+
+INFO: Custom library 1 not detected
+
+INFO: Downloading the source code of ffmpeg and external libraries.
+
+DEBUG: Downloading gnu config source.
+
+INFO: Cloning tag v20210814 from repository https://github.com/arthenica/gnu-config into local directory /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/.tmp/source/config
+
+Cloning into '/home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/.tmp/source/config'...
+Note: switching to '805517123cbfe33d17c989a18e78c5789fab0437'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+
+INFO: gnu config downloaded successfully
+
+DEBUG: Downloading library source: ffmpeg
+
+DEBUG: Checking if ffmpeg is already downloaded at /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/src/ffmpeg
+
+INFO: /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/src/ffmpeg directory not found
+
+INFO: Cloning tag n8.1.2 from repository https://github.com/arthenica/FFmpeg into local directory /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/src/ffmpeg
+
+Cloning into '/home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/src/ffmpeg'...
+warning: refs/tags/n8.1.2 1c2c67c0b9f7f66ab32c19dcf7f227bcd290aa4c is not a commit!
+Note: switching to '38b88335f99e76ed89ff3c93f877fdefce736c13'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+Updating files:  60% (6132/10135)Updating files:  61% (6183/10135)Updating files:  62% (6284/10135)Updating files:  63% (6386/10135)Updating files:  64% (6487/10135)Updating files:  65% (6588/10135)Updating files:  66% (6690/10135)Updating files:  67% (6791/10135)Updating files:  68% (6892/10135)Updating files:  69% (6994/10135)Updating files:  70% (7095/10135)Updating files:  71% (7196/10135)Updating files:  72% (7298/10135)Updating files:  73% (7399/10135)Updating files:  74% (7500/10135)Updating files:  75% (7602/10135)Updating files:  76% (7703/10135)Updating files:  77% (7804/10135)Updating files:  78% (7906/10135)Updating files:  79% (8007/10135)Updating files:  80% (8108/10135)Updating files:  81% (8210/10135)Updating files:  82% (8311/10135)Updating files:  83% (8413/10135)Updating files:  84% (8514/10135)Updating files:  85% (8615/10135)Updating files:  86% (8717/10135)Updating files:  87% (8818/10135)Updating files:  88% (8919/10135)Updating files:  89% (9021/10135)Updating files:  90% (9122/10135)Updating files:  91% (9223/10135)Updating files:  92% (9325/10135)Updating files:  93% (9426/10135)Updating files:  94% (9527/10135)Updating files:  95% (9629/10135)Updating files:  96% (9730/10135)Updating files:  97% (9831/10135)Updating files:  98% (9933/10135)Updating files:  99% (10034/10135)Updating files: 100% (10135/10135)Updating files: 100% (10135/10135), done.
+
+INFO: ffmpeg library downloaded
+
+DEBUG: Downloading library cpu-features
+
+DEBUG: Downloading library source: cpu-features
+
+DEBUG: Checking if cpu-features is already downloaded at /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/src/cpu-features
+
+INFO: /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/src/cpu-features directory not found
+
+INFO: Cloning tag v0.11.0 from repository https://github.com/arthenica/cpu_features into local directory /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/src/cpu-features
+
+Cloning into '/home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/src/cpu-features'...
+Note: switching to '81d13c49649f0714dd41fb56bb246398b6584085'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+
+INFO: cpu-features library downloaded
+
+INFO: Starting new build for arm64-v8a on API level 33 at Fri Oct 16 01:35:34 AM +10 2026
+
+INFO: Enabled library cpu-features will be built
+
+INFO: Building android-support objects for arm64-v8a
+
+DEBUG: Checking if cpu-features is already built and installed at /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33/cpu-features
+
+INFO: /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33/cpu-features directory not found
+
+INFO: Flags detected for cpu-features: already installed=0, rebuild requested by user=, will be rebuilt due to dependency update=
+
+----------------------------------------------------------------
+
+INFO: Building cpu-features for aarch64-linux-android with the following environment variables
+
+SHELL=/bin/bash
+SESSION_MANAGER=local/unix:@/tmp/.ICE-unix/10106,unix/unix:/tmp/.ICE-unix/10106
+HERMES_MEDIA_TRUST_RECENT_FILES=1
+GPL_ENABLED=no
+DESTDIR=
+PYTHONUNBUFFERED=1
+__MISE_EXE=/home/satori/.local/bin/mise
+XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0
+HISTCONTROL=ignoredups
+TERMINAL_DOCKER_FORWARD_ENV=[]
+HERMES_EXEC_ASK=1
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+PKG_CONFIG_ALLOW_CROSS=1
+QT_IM_MODULES=wayland;ibus
+HERMES_SESSION_USER_ID=8124671829
+ASM=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android33-clang
+DEPS=/home/satori/.cache/retrolunar/nestdir/ffmpeg-kit-next-8@source /home/satori/.cache/retrolunar/nestdir/ffmpeg-kit-ffmpeg-8@aarch64-android33 /home/satori/.cache/retrolunar/nestdir/libvpx@aarch64-android33 /home/satori/.cache/retrolunar/nestdir/opus@aarch64-android33 /home/satori/.cache/retrolunar/nestdir/lame@aarch64-android33
+ac_cv_func_ffsl=yes
+PKG_CONFIG_PATH=
+AI_AGENT=hermes-agent
+TERMINAL_CONTAINER_CPU=1
+TOOLBIN=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/bin
+HISTSIZE=1000
+HOSTNAME=fedora
+ANDROID_TOOLCHAIN=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64
+HERMES_SUPERVISED_CHILD=1
+PREFIX=/home/satori/.cache/retrolunar/nestdir/tmp/stage-pLAGnD/home/satori/.cache/retrolunar/nestdir/store/7ad63cb9299d5fdcef441cce0276acd72de7bd47ee01ae6bb6474b4eddd43869
+DETECTED_NDK_VERSION=29.0.14206865
+TERMINAL_ENV=local
+SED=sed
+JAVA_HOME=/home/satori/.local/share/mise/installs/java/26.0.1+8
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+group_sessions_per_user=True
+TERMINAL_DOCKER_EXTRA_ARGS=[]
+MEMORY_PRESSURE_WRITE=c29tZSAyMDAwMDAgMjAwMDAwMAA=
+HOST_TRIPLET=aarch64-linux-android
+OBSCURA_STEALTH=true
+INSTALL_PKG_CONFIG_DIR=/home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33/pkgconfig
+CXX_aarch64_linux_android=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android33-clang++
+lame_PREFIX=/home/satori/.cache/retrolunar/nestdir/lame@aarch64-android33
+XMODIFIERS=@im=ibus
+TERMINAL_CONTAINER_MEMORY=5120
+DESKTOP_SESSION=cinnamon
+HERMES_SESSION_USER_ID_ALT=
+SSH_AGENT_PID=10160
+TERMINAL_VERCEL_RUNTIME=
+GPG_TTY=not a tty
+EDITOR=/usr/bin/nano
+TERMINAL_DEGRADED_MODE=warn
+TARGET_TRIPLET=aarch64-linux-android
+PWD=/home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz
+LOGNAME=satori
+XDG_SESSION_DESKTOP=cinnamon
+HERMES_REAL_HOME=/home/satori
+XDG_SESSION_TYPE=x11
+TERMINAL_DOCKER_SHM_SIZE=1g
+BROWSER_SESSION_TIMEOUT=300
+CFLAGS_aarch64_linux_android=-O2 -fPIC -DANDROID -isystem /home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include
+gl_cv_func_strcasecmp_works=yes
+WEB_TOOLS_DEBUG=false
+SYSTEMD_EXEC_PID=1698062
+HERMES_SESSION_CHAT_ID=8124671829
+CXX=aarch64-linux-android33-clang++
+CXXFLAGS=-DFFMPEG_KIT_MIN_SDK=33 -I/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -std=c++11 -fno-exceptions -fno-rtti -Os -ffunction-sections -fdata-sections 
+TERMINAL_TEMP_DIR=
+XAUTHORITY=/run/lightdm/satori/xauthority
+SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
+XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/satori
+CARGO_TARGET_AARCH64_LINUX_ANDROID_LINKER=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android33-clang
+OUTPKG=/home/satori/.cache/retrolunar/nestdir/store/7ad63cb9299d5fdcef441cce0276acd72de7bd47ee01ae6bb6474b4eddd43869
+CARGO_BUILD_TARGET=aarch64-linux-android
+LDFLAGS=-march=armv8-a -Wl,-z,max-page-size=16384 -Wl,--gc-sections -Os -ffunction-sections -fdata-sections -lc -lm -ldl -llog -L/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/33  -Wl,--hash-style=both -Wl,--exclude-libs,libgcc.a -Wl,--exclude-libs,libunwind.a
+HOME=/home/satori
+IMAGE_TOOLS_DEBUG=false
+LANG=en_US.UTF-8
+HERMES_SESSION_ID=
+XDG_CURRENT_DESKTOP=X-Cinnamon
+HERMES_SESSION_PLATFORM=telegram
+TERMINAL_DOCKER_RUN_AS_HOST_USER=False
+MEMORY_PRESSURE_WATCH=/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/hermes-gateway.service/memory.pressure
+TERMINAL_CONTAINER_DISK=51200
+__MISE_DIFF=eAFqWVjGtDg/J6VhcV5qefMaRz+XIH9Pl3gPf1/Xm+5JOYnZqcZWxkZGySlJaZZGlqkGJoaWJoYpqUaWBskppuYGZoYpqamJJpYGZmZGBkZpFgaGFmZJSUbmBubmhonmScamKUYGphtgpga7eMcH+fuHUM3klV6OYY6ojrU0TTNPM0y0SEu1NExLM081M7M0SUw1SEy1SDU0N01Ltkw0TrU0Tba0tEhKNTBOSbJIS7Y0SjMxs0gzTzZIS01dUpBYkjH1ZqB+Rn5uqn5xYkl+Uaa+Xk5+cmKOfnFGYlGqfm5mcap+Zl5xSWJOTrF+Yl5KUX5mim5xSrZ+TmJJanGJfnJuSk5mXqpuSX5+TrG+kbGegX5SZt5NTwqMBKwgJ7EkLb8oF2LmTV8KjEoqzcxJgZijb2ymZ6BncNOVWOPSixJTclL1LfXM9Az1IRxdCAfkQUtijclKLEvUNwLZbahtAQobAOoJ23o
+ZLIB_PACKAGE_CONFIG_PATH=/home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33/pkgconfig/zlib.pc
+MESON_FLAGS=--prefix=/home/satori/.cache/retrolunar/nestdir/store/7ad63cb9299d5fdcef441cce0276acd72de7bd47ee01ae6bb6474b4eddd43869 --cross-file /home/satori/.cache/retrolunar/repos/default/system@aarch64-android33/crossfile-aarch64-android33.ini
+MESON_CROSS_FILE=/home/satori/.cache/retrolunar/repos/default/system@aarch64-android33/crossfile-aarch64-android33.ini
+TERMINAL_DOCKER_NETWORK=True
+CARGO_TARGET_AARCH64_LINUX_ANDROID_AR=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar
+opus_PREFIX=/home/satori/.cache/retrolunar/nestdir/opus@aarch64-android33
+TERMINAL_MODAL_MODE=auto
+RUSTFLAGS=
+HERMES_BROWSER_CONTROL_TRANSPORT_FAMILY=
+TMPDIR=/home/satori/.hermes/cache/scratch
+FFMPEG_KIT_BUILD_TYPE=android
+CMAKE_PREFIX_PATH=/home/satori/.cache/retrolunar/nestdir/ffmpeg-kit-ffmpeg-8@aarch64-android33;/home/satori/.cache/retrolunar/nestdir/libvpx@aarch64-android33;/home/satori/.cache/retrolunar/nestdir/opus@aarch64-android33;/home/satori/.cache/retrolunar/nestdir/lame@aarch64-android33;
+XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+API=33
+PYTHON_SITE=lib/python3.14/site-packages
+HERMES_CRON_SESSION=
+CPPFLAGS=-I/home/satori/.cache/retrolunar/nestdir/ffmpeg-kit-ffmpeg-8@aarch64-android33/include -I/home/satori/.cache/retrolunar/nestdir/libvpx@aarch64-android33/include -I/home/satori/.cache/retrolunar/nestdir/opus@aarch64-android33/include -I/home/satori/.cache/retrolunar/nestdir/lame@aarch64-android33/include 
+TERMINAL_TIMEOUT=180
+LD=ld.lld
+TERMINAL_DOCKER_SNAP_COMPAT=False
+INVOCATION_ID=43f09f40885745168c6d8b9ab1088921
+AUTOCONF_CONFIGURE_FLAGS=--host=aarch64-linux-android --build=x86_64-pc-linux-gnu --prefix=/home/satori/.cache/retrolunar/nestdir/store/7ad63cb9299d5fdcef441cce0276acd72de7bd47ee01ae6bb6474b4eddd43869
+RECIPEDIR=/home/satori/ond/git/ffmpeg-kit-next/recipes/ffmpeg-kit-next-8
+BUILD_TRIPLET=x86_64-pc-linux-gnu
+CXXFLAGS_aarch64_linux_android=-O2 -fPIC -DANDROID
+HERMES_AGENT=true
+libvpx_PREFIX=/home/satori/.cache/retrolunar/nestdir/libvpx@aarch64-android33
+MANAGERPID=9810
+HERMES_UI_SESSION_ID=
+ac_cv_c_bigendian=no
+HERMES_SESSION_USER_NAME=Lunatic
+BROWSERBASE_PROXIES=true
+PKG_CONFIG_LIBDIR=/home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33/pkgconfig
+READELF=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-readelf
+HERMES_TURN_LEASE_TIMEOUT=5
+STEAM_FRAME_FORCE_CLOSE=1
+__MISE_ORIG_PATH=/home/satori/.local/bin:/home/satori/bin:/home/satori/.local/bin:/home/satori/.cargo/bin:/usr/local/bin:/usr/bin
+VISION_TOOLS_DEBUG=false
+TERMINAL_DOCKER_ENV={}
+SED_INLINE=sed -i
+HERMES_QUIET=1
+MOZ_GMP_PATH=/usr/lib64/mozilla/plugins/gmp-gmpopenh264/system-installed
+HERMES_SESSION_PARENT_CHAT_ID=
+MAKEFLAGS=-j1
+XDG_SESSION_CLASS=user
+HERMES_GATEWAY_BUSY_INPUT_MODE=interrupt
+HOST_ARCH=aarch64
+ANDROID_HOME=/home/satori/.local/share/mise/installs/android-sdk/23.0
+BROWSER_INACTIVITY_TIMEOUT=120
+HERMES_SESSION_MESSAGE_ID=
+TOOLCHAIN=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64
+HERMES_SCRATCH_DIR=/home/satori/.hermes/cache/scratch
+HERMES_GATEWAY_PLATFORM_CONNECT_TIMEOUT=30
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+HOST_OS=android
+USER=satori
+TERMINAL_SINGULARITY_IMAGE=docker://nousresearch/hermes-sandbox:desktop
+LIB_INSTALL_BASE=/home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33
+AR=llvm-ar
+AS=aarch64-linux-android33-clang
+ORIGINAL_API=33
+ARCH=arm64-v8a
+HERMES_MEDIA_TRUST_RECENT_SECONDS=600
+__MISE_SESSION=eAHqWVjGtCYnPzElNSW+JD8/p3jCOigvOT8vLTO9eOJNVf2M/NxU/eLEkvyiTH09iLh+bmZxqj6ErVeSn5uzBsKOL0gsySiesDg1r6x5jaOfS5C/p0u8h7+v6033pJzE7FRjK2Mjo+SUpDRLI8tUAxNDSxPDlFQjS4PkFFNzAzPDlNTURBNLAzMzIwOjNAsDQwuzpCQjcwNzc8NE8yRj0xQjA9MNMFODXbzjg/z9Q6hm8kovxzBHVMdamqaZpxkmWqSlWhqmpZmnmplZmiSmGiSmWqQampumJVsmGqdamiZbWlokpRoYpyRZpCVbGqWZmFmkmScbpKWmLk/MyUwsTi1uWFWSWpQYn5aZk1o8AbDV5YklyRkQzmQig3cfaiTk5Ccn5ugXZyQWpYJj4qYeVvmSxBKIvH5JUWlxSWqKLiSWihenZBbdVEHRk5+Xop+eWaKflpZbkJqum51ZopuXWlGyJjWvLL4ssSg+I7E4Y0OSsaVhapqpQZK5YbKhqYXZ2pzEktTikvjSgpTEktQjAgxwwLjQwbiHbUdGfn52PMiI4oz8opLk0pLi+NK84tSSwwAYpN1v
+TEMP=/home/satori/.hermes/cache/scratch
+HERMES_SESSION_CHAT_NAME=Lunatic
+DISPLAY=:0
+CMAKE_FLAGS=-DCMAKE_TOOLCHAIN_FILE=/home/satori/.cache/retrolunar/repos/default/system@aarch64-android33/aarch64-linux-android33-toolchain.cmake -DCMAKE_INSTALL_PREFIX=/home/satori/.cache/retrolunar/nestdir/store/7ad63cb9299d5fdcef441cce0276acd72de7bd47ee01ae6bb6474b4eddd43869 -DCMAKE_TRY_COMPILE_TARGET_TYPE=STATIC_LIBRARY -DTHREADS_PREFER_PTHREAD_FLAG=ON -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_MAKE_PROGRAM=/usr/bin/make
+SHLVL=4
+HERMES_BROWSER_CONTROL_PRINCIPAL=
+NM=llvm-nm
+HERMES_MEDIA_DELIVERY_STRICT=0
+CORES=1
+NO_OUTPUT_REDIRECTION=1
+NESTDIR=/home/satori/.cache/retrolunar/nestdir
+ANDROID_SDK_ROOT=/home/satori/.local/share/mise/installs/android-sdk/23.0
+BUILD_JOBS=1
+QT_IM_MODULE=ibus
+TERMINAL_DAYTONA_IMAGE=nousresearch/hermes-sandbox:desktop
+CMAKE_MAKE_PROGRAM=/usr/bin/make
+FFMPEG_KIT_TMPDIR=/home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/.tmp
+TERMINAL_MODAL_IMAGE=nikolaik/python-nodejs:python3.11-nodejs20
+SYSROOT=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/sysroot
+TERMINAL_PERSISTENT_SHELL=True
+MANAGERPIDFDID=17296
+TERMINAL_HOME_MODE=auto
+NDK=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865
+TERMINAL_CWD=/home/satori
+ANDROID_API=33
+LD_LIBRARY_PATH=/home/satori/.cache/retrolunar/nestdir/ffmpeg-kit-next-8@source/lib:/home/satori/.cache/retrolunar/nestdir/ffmpeg-kit-next-8@source/lib64:
+PACKAGEDIR=/home/satori/ond/git/ffmpeg-kit-next/recipes:/home/satori/.cache/retrolunar/repos/default
+XDG_RUNTIME_DIR=/run/user/1000
+_config_version=50
+HERMES_SESSION_PROFILE=
+HERMES_SESSION_CHAT_TYPE=dm
+HERMES_SESSION_THREAD_ID=
+OBJCOPY=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-objcopy
+DEBUGINFOD_URLS=ima:enforcing https://debuginfod.fedoraproject.org/ ima:ignore 
+CC_aarch64_linux_android=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android33-clang
+DEBUGINFOD_IMA_CERT_PATH=/etc/keys/ima:
+BASEDIR=/home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz
+TERMINAL_DOCKER_VOLUMES=[]
+HERMES_SESSION_SCOPE_ID=
+ANDROID_NDK_ROOT=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865
+_HERMES_GATEWAY=1
+STRIP=llvm-strip
+ffmpeg_kit_next_8_source_PREFIX=/home/satori/.cache/retrolunar/nestdir/ffmpeg-kit-next-8@source
+TERMINAL_DOCKER_MOUNT_CWD_TO_WORKSPACE=False
+JOURNAL_STREAM=10:3359925
+MISE_SHELL=bash
+GTK3_MODULES=xapp-gtk3-module
+XDG_DATA_DIRS=/home/satori/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+HERMES_SESSION_SOURCE=
+ffmpeg_kit_ffmpeg_8_PREFIX=/home/satori/.cache/retrolunar/nestdir/ffmpeg-kit-ffmpeg-8@aarch64-android33
+HERMES_MAX_ITERATIONS=150
+TERMINAL_VERCEL_IMAGE=vercel/sandbox/universal:latest
+TMP=/home/satori/.hermes/cache/scratch
+OBJDUMP=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-objdump
+PATH=/home/satori/.cache/retrolunar/nestdir/ffmpeg-kit-next-8@source/bin:/home/satori/.local/share/mise/installs/android-sdk/latest/cmdline-tools/23.0/bin:/home/satori/.local/share/mise/installs/android-sdk/latest/platform-tools:/home/satori/.local/share/mise/installs/android-sdk/latest/build-tools/36.0.0:/home/satori/.local/share/mise/installs/gradle/9.6.1/gradle-9.6.1/bin:/home/satori/.local/share/mise/installs/java/26.0.1+8/bin:/home/satori/.local/share/mise/shims:/home/satori/.local/bin:/home/satori/bin:/home/satori/.local/bin:/home/satori/.cargo/bin:/usr/local/bin:/usr/bin:/home/satori/.hermes/tools/agent-browser-0.26.0-linux-x64/bin:/home/satori/.hermes/tools/cua-driver-0.21.0-linux-x64:/home/satori/.hermes/tools/ffmpeg-9.0.1-linux-x64/bin:/home/satori/.hermes/tools/node-26.7.0-linux-x64/bin:/home/satori/.hermes/tools/npm-12.0.2-linux-x64/bin:/home/satori/.hermes/tools/python-3.14.7+20260901-linux-x64/bin:/home/satori/.hermes/tools/ripgrep-15.2.0-linux-x64:/home/satori/.hermes/hermes-agent/.hermes/bin:/home/satori/.hermes/installs/9b28cf310340172f/environments/cd863472f4154ccd861ea747bbc8732d/venv/bin:/home/satori/.hermes/hermes-agent/node_modules/.bin:/usr/local/sbin:/usr/sbin:/sbin:/bin:/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/bin:/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/bin
+CC=aarch64-linux-android33-clang
+GDMSESSION=cinnamon
+CFLAGS=-I/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -march=armv8-a -DFFMPEG_KIT_ARM64_V8A -std=c99 -Wno-unused-function -fstrict-aliasing -DANDROID_NDK -fPIC -DANDROID -D__ANDROID__ -D__ANDROID_MIN_SDK_VERSION__=33 -DFFMPEG_KIT_MIN_SDK=33  -Os -ffunction-sections -fdata-sections 
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+TERMINAL_DOCKER_IMAGE_PINNED=0
+BROWSERBASE_ADVANCED_STEALTH=false
+MAIL=/var/spool/mail/satori
+HERMES_SESSION_KEY=agent:main:telegram:dm:8124671829
+TERMINAL_CONTAINER_PERSISTENT=True
+TERMINAL_DOCKER_IMAGE=nousresearch/hermes-sandbox:desktop
+MOA_TOOLS_DEBUG=false
+TERMINAL_LIFETIME_SECONDS=300
+RANLIB=llvm-ranlib
+SYSDIR=/home/satori/.cache/retrolunar/repos/default/system@aarch64-android33
+HERMES_STARTUP_WATCHDOG_TIMEOUT_S=300
+TERMINAL_DOCKER_SHARED_CONTAINER_KEY=
+OLDPWD=/home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz
+HERMES_HOME=/home/satori/.hermes
+CMAKE_TOOLCHAIN_FILE=/home/satori/.cache/retrolunar/repos/default/system@aarch64-android33/aarch64-linux-android33-toolchain.cmake
+_=/usr/bin/env
+----------------------------------------------------------------
+
+INFO: System information
+
+INFO: Linux fedora 7.2.9-200.fc44.x86_64 #1 SMP PREEMPT_DYNAMIC Sat Oct  3 19:59:55 UTC 2026 x86_64 GNU/Linux
+
+----------------------------------------------------------------
+
+-- The C compiler identification is Clang 21.0.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/bin/clang - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Looking for dlfcn.h
+-- Looking for dlfcn.h - found
+-- Looking for getauxval
+-- Looking for getauxval - found
+-- Looking for elf_aux_info
+-- Looking for elf_aux_info - not found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - not found
+-- Check if compiler accepts -pthread
+-- Check if compiler accepts -pthread - yes
+-- Found Threads: TRUE
+-- The CXX compiler identification is Clang 21.0.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/.tmp/cmake/build/android-arm64-33/cpu-features/googletest-download
+[ 11%] Creating directories for 'googletest'
+[ 22%] Performing download step (git clone) for 'googletest'
+Cloning into 'googletest-src'...
+Already on 'main'
+Your branch is up to date with 'origin/main'.
+[ 33%] Performing update step for 'googletest'
+-- Fetching latest from the remote origin
+[ 44%] No patch step for 'googletest'
+[ 55%] No configure step for 'googletest'
+[ 66%] No build step for 'googletest'
+[ 77%] No install step for 'googletest'
+[ 88%] No test step for 'googletest'
+[100%] Completed 'googletest'
+[100%] Built target googletest
+-- Configuring done (24.9s)
+-- Generating done (0.2s)
+-- Build files have been written to: /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/.tmp/cmake/build/android-arm64-33/cpu-features
+make: Entering directory '/home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/.tmp/cmake/build/android-arm64-33/cpu-features'
+[  1%] Building C object CMakeFiles/utils.dir/src/filesystem.c.o
+[  2%] Building C object CMakeFiles/utils.dir/src/stack_line_reader.c.o
+[  3%] Building C object CMakeFiles/utils.dir/src/string_view.c.o
+[  3%] Built target utils
+[  5%] Building C object CMakeFiles/unix_based_hardware_detection.dir/src/hwcaps_linux_or_android.c.o
+[  6%] Building C object CMakeFiles/unix_based_hardware_detection.dir/src/hwcaps_freebsd_or_openbsd.c.o
+[  7%] Building C object CMakeFiles/unix_based_hardware_detection.dir/src/hwcaps.c.o
+[  7%] Built target unix_based_hardware_detection
+[  8%] Building C object CMakeFiles/cpu_features.dir/src/impl_aarch64_cpuid.c.o
+[ 10%] Building C object CMakeFiles/cpu_features.dir/src/impl_aarch64_freebsd_or_openbsd.c.o
+[ 11%] Building C object CMakeFiles/cpu_features.dir/src/impl_aarch64_linux_or_android.c.o
+[ 12%] Building C object CMakeFiles/cpu_features.dir/src/impl_aarch64_macos_or_iphone.c.o
+[ 14%] Building C object CMakeFiles/cpu_features.dir/src/impl_aarch64_windows.c.o
+[ 15%] Building C object CMakeFiles/cpu_features.dir/src/impl_arm_linux_or_android.c.o
+[ 16%] Building C object CMakeFiles/cpu_features.dir/src/impl_loongarch_linux.c.o
+[ 17%] Building C object CMakeFiles/cpu_features.dir/src/impl_mips_linux_or_android.c.o
+[ 19%] Building C object CMakeFiles/cpu_features.dir/src/impl_ppc_linux.c.o
+[ 20%] Building C object CMakeFiles/cpu_features.dir/src/impl_riscv_linux.c.o
+[ 21%] Building C object CMakeFiles/cpu_features.dir/src/impl_s390x_linux.c.o
+[ 23%] Building C object CMakeFiles/cpu_features.dir/src/impl_x86_freebsd.c.o
+[ 24%] Building C object CMakeFiles/cpu_features.dir/src/impl_x86_linux_or_android.c.o
+[ 25%] Building C object CMakeFiles/cpu_features.dir/src/impl_x86_macos.c.o
+[ 26%] Building C object CMakeFiles/cpu_features.dir/src/impl_x86_windows.c.o
+[ 28%] Linking C static library libcpu_features.a
+[ 28%] Built target cpu_features
+[ 29%] Building C object CMakeFiles/list_cpu_features.dir/src/utils/list_cpu_features.c.o
+[ 30%] Linking C executable list_cpu_features
+[ 30%] Built target list_cpu_features
+[ 32%] Building C object ndk_compat/CMakeFiles/ndk_compat.dir/cpu-features.c.o
+[ 33%] Building C object ndk_compat/CMakeFiles/ndk_compat.dir/__/src/impl_aarch64_cpuid.c.o
+[ 34%] Building C object ndk_compat/CMakeFiles/ndk_compat.dir/__/src/impl_aarch64_freebsd_or_openbsd.c.o
+[ 35%] Building C object ndk_compat/CMakeFiles/ndk_compat.dir/__/src/impl_aarch64_linux_or_android.c.o
+[ 37%] Building C object ndk_compat/CMakeFiles/ndk_compat.dir/__/src/impl_aarch64_macos_or_iphone.c.o
+[ 38%] Building C object ndk_compat/CMakeFiles/ndk_compat.dir/__/src/impl_aarch64_windows.c.o
+[ 39%] Building C object ndk_compat/CMakeFiles/ndk_compat.dir/__/src/impl_arm_linux_or_android.c.o
+[ 41%] Building C object ndk_compat/CMakeFiles/ndk_compat.dir/__/src/impl_loongarch_linux.c.o
+[ 42%] Building C object ndk_compat/CMakeFiles/ndk_compat.dir/__/src/impl_mips_linux_or_android.c.o
+[ 43%] Building C object ndk_compat/CMakeFiles/ndk_compat.dir/__/src/impl_ppc_linux.c.o
+[ 44%] Building C object ndk_compat/CMakeFiles/ndk_compat.dir/__/src/impl_riscv_linux.c.o
+[ 46%] Building C object ndk_compat/CMakeFiles/ndk_compat.dir/__/src/impl_s390x_linux.c.o
+[ 47%] Building C object ndk_compat/CMakeFiles/ndk_compat.dir/__/src/impl_x86_freebsd.c.o
+[ 48%] Building C object ndk_compat/CMakeFiles/ndk_compat.dir/__/src/impl_x86_linux_or_android.c.o
+[ 50%] Building C object ndk_compat/CMakeFiles/ndk_compat.dir/__/src/impl_x86_macos.c.o
+[ 51%] Building C object ndk_compat/CMakeFiles/ndk_compat.dir/__/src/impl_x86_windows.c.o
+[ 52%] Linking C static library libndk_compat.a
+[ 52%] Built target ndk_compat
+[ 53%] Building C object ndk_compat/CMakeFiles/ndk-compat-test.dir/ndk-compat-test.c.o
+/home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/src/cpu-features/ndk_compat/ndk-compat-test.c:7:49: warning: format specifies type 'unsigned long long' but the argument has type 'uint64_t' (aka 'unsigned long') [-Wformat]
+    7 |   printf("android_getCpuFeatures()=0x%08llx\n", android_getCpuFeatures());
+      |                                      ~~~~~~     ^~~~~~~~~~~~~~~~~~~~~~~~
+      |                                      %08lx
+1 warning generated.
+[ 55%] Linking C executable ndk-compat-test
+[ 55%] Built target ndk-compat-test
+[ 56%] Building C object test/CMakeFiles/string_view.dir/__/src/string_view.c.o
+[ 57%] Linking C static library libstring_view.a
+[ 57%] Built target string_view
+[ 58%] Building CXX object test/CMakeFiles/filesystem_for_testing.dir/filesystem_for_testing.cc.o
+[ 60%] Linking CXX static library libfilesystem_for_testing.a
+[ 60%] Built target filesystem_for_testing
+[ 61%] Building CXX object test/CMakeFiles/hwcaps_for_testing.dir/hwcaps_for_testing.cc.o
+[ 62%] Linking CXX static library libhwcaps_for_testing.a
+[ 62%] Built target hwcaps_for_testing
+[ 64%] Building C object test/CMakeFiles/stack_line_reader.dir/__/src/stack_line_reader.c.o
+[ 65%] Linking C static library libstack_line_reader.a
+[ 65%] Built target stack_line_reader
+[ 66%] Building C object test/CMakeFiles/stack_line_reader_for_test.dir/__/src/stack_line_reader.c.o
+[ 67%] Linking CXX static library libstack_line_reader_for_test.a
+[ 67%] Built target stack_line_reader_for_test
+[ 69%] Building C object test/CMakeFiles/all_libraries.dir/__/src/hwcaps.c.o
+[ 70%] Building C object test/CMakeFiles/all_libraries.dir/__/src/hwcaps_linux_or_android.c.o
+[ 71%] Building C object test/CMakeFiles/all_libraries.dir/__/src/hwcaps_freebsd_or_openbsd.c.o
+[ 73%] Building C object test/CMakeFiles/all_libraries.dir/__/src/stack_line_reader.c.o
+[ 74%] Linking CXX static library liball_libraries.a
+[ 74%] Built target all_libraries
+[ 75%] Building CXX object googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
+[ 76%] Linking CXX static library ../../lib/libgtest.a
+[ 76%] Built target gtest
+[ 78%] Building CXX object googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o
+[ 79%] Linking CXX static library ../../lib/libgmock.a
+[ 79%] Built target gmock
+[ 80%] Building CXX object googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o
+[ 82%] Linking CXX static library ../../lib/libgmock_main.a
+[ 82%] Built target gmock_main
+[ 83%] Building CXX object test/CMakeFiles/bit_utils_test.dir/bit_utils_test.cc.o
+[ 84%] Linking CXX executable bit_utils_test
+[ 84%] Built target bit_utils_test
+[ 85%] Building CXX object test/CMakeFiles/string_view_test.dir/string_view_test.cc.o
+[ 87%] Building C object test/CMakeFiles/string_view_test.dir/__/src/string_view.c.o
+[ 88%] Linking CXX executable string_view_test
+[ 88%] Built target string_view_test
+[ 89%] Building CXX object test/CMakeFiles/stack_line_reader_test.dir/stack_line_reader_test.cc.o
+[ 91%] Linking CXX executable stack_line_reader_test
+[ 91%] Built target stack_line_reader_test
+[ 92%] Building CXX object test/CMakeFiles/cpuinfo_aarch64_test.dir/cpuinfo_aarch64_test.cc.o
+[ 93%] Building C object test/CMakeFiles/cpuinfo_aarch64_test.dir/__/src/impl_aarch64_cpuid.c.o
+[ 94%] Building C object test/CMakeFiles/cpuinfo_aarch64_test.dir/__/src/impl_aarch64_linux_or_android.c.o
+[ 96%] Building C object test/CMakeFiles/cpuinfo_aarch64_test.dir/__/src/impl_aarch64_windows.c.o
+[ 97%] Building C object test/CMakeFiles/cpuinfo_aarch64_test.dir/__/src/impl_aarch64_macos_or_iphone.c.o
+[ 98%] Building C object test/CMakeFiles/cpuinfo_aarch64_test.dir/__/src/impl_aarch64_freebsd_or_openbsd.c.o
+[100%] Linking CXX executable cpuinfo_aarch64_test
+[100%] Built target cpuinfo_aarch64_test
+make: Leaving directory '/home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/.tmp/cmake/build/android-arm64-33/cpu-features'
+make: Entering directory '/home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/.tmp/cmake/build/android-arm64-33/cpu-features'
+[  3%] Built target utils
+[  7%] Built target unix_based_hardware_detection
+[ 28%] Built target cpu_features
+[ 30%] Built target list_cpu_features
+[ 52%] Built target ndk_compat
+[ 55%] Built target ndk-compat-test
+[ 57%] Built target string_view
+[ 60%] Built target filesystem_for_testing
+[ 62%] Built target hwcaps_for_testing
+[ 65%] Built target stack_line_reader
+[ 67%] Built target stack_line_reader_for_test
+[ 74%] Built target all_libraries
+[ 76%] Built target gtest
+[ 79%] Built target gmock
+[ 82%] Built target gmock_main
+[ 84%] Built target bit_utils_test
+[ 88%] Built target string_view_test
+[ 91%] Built target stack_line_reader_test
+[100%] Built target cpuinfo_aarch64_test
+Install the project...
+-- Install configuration: "Release"
+-- Installing: /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33/cpu-features/lib/libcpu_features.a
+-- Installing: /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33/cpu-features/include/cpu_features/cpu_features_macros.h
+-- Installing: /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33/cpu-features/include/cpu_features/cpu_features_cache_info.h
+-- Installing: /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33/cpu-features/include/cpu_features/cpuinfo_aarch64.h
+-- Installing: /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33/cpu-features/bin/list_cpu_features
+-- Installing: /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33/cpu-features/lib/cmake/CpuFeatures/CpuFeaturesTargets.cmake
+-- Installing: /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33/cpu-features/lib/cmake/CpuFeatures/CpuFeaturesTargets-release.cmake
+-- Installing: /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33/cpu-features/lib/cmake/CpuFeatures/CpuFeaturesConfig.cmake
+-- Installing: /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33/cpu-features/lib/cmake/CpuFeatures/CpuFeaturesConfigVersion.cmake
+-- Installing: /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33/cpu-features/lib/libndk_compat.a
+-- Installing: /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33/cpu-features/include/ndk_compat/cpu-features.h
+-- Installing: /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33/cpu-features/lib/cmake/CpuFeaturesNdkCompat/CpuFeaturesNdkCompatTargets.cmake
+-- Installing: /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33/cpu-features/lib/cmake/CpuFeaturesNdkCompat/CpuFeaturesNdkCompatTargets-release.cmake
+-- Installing: /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33/cpu-features/lib/cmake/CpuFeaturesNdkCompat/CpuFeaturesNdkCompatConfig.cmake
+-- Installing: /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33/cpu-features/lib/cmake/CpuFeaturesNdkCompat/CpuFeaturesNdkCompatConfigVersion.cmake
+make: Leaving directory '/home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/.tmp/cmake/build/android-arm64-33/cpu-features'
+----------------------------------------------------------------
+
+INFO: Building ffmpeg for aarch64-linux-android with the following environment variables
+
+SHELL=/bin/bash
+SESSION_MANAGER=local/unix:@/tmp/.ICE-unix/10106,unix/unix:/tmp/.ICE-unix/10106
+HERMES_MEDIA_TRUST_RECENT_FILES=1
+GPL_ENABLED=no
+DESTDIR=
+PYTHONUNBUFFERED=1
+__MISE_EXE=/home/satori/.local/bin/mise
+XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0
+HISTCONTROL=ignoredups
+TERMINAL_DOCKER_FORWARD_ENV=[]
+HERMES_EXEC_ASK=1
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+PKG_CONFIG_ALLOW_CROSS=1
+QT_IM_MODULES=wayland;ibus
+HERMES_SESSION_USER_ID=8124671829
+ASM=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android33-clang
+DEPS=/home/satori/.cache/retrolunar/nestdir/ffmpeg-kit-next-8@source /home/satori/.cache/retrolunar/nestdir/ffmpeg-kit-ffmpeg-8@aarch64-android33 /home/satori/.cache/retrolunar/nestdir/libvpx@aarch64-android33 /home/satori/.cache/retrolunar/nestdir/opus@aarch64-android33 /home/satori/.cache/retrolunar/nestdir/lame@aarch64-android33
+ac_cv_func_ffsl=yes
+PKG_CONFIG_PATH=
+AI_AGENT=hermes-agent
+TERMINAL_CONTAINER_CPU=1
+HOSTNAME=fedora
+HISTSIZE=1000
+TOOLBIN=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/bin
+ANDROID_TOOLCHAIN=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64
+HERMES_SUPERVISED_CHILD=1
+PREFIX=/home/satori/.cache/retrolunar/nestdir/tmp/stage-pLAGnD/home/satori/.cache/retrolunar/nestdir/store/7ad63cb9299d5fdcef441cce0276acd72de7bd47ee01ae6bb6474b4eddd43869
+DETECTED_NDK_VERSION=29.0.14206865
+TERMINAL_ENV=local
+SED=sed
+JAVA_HOME=/home/satori/.local/share/mise/installs/java/26.0.1+8
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+group_sessions_per_user=True
+TERMINAL_DOCKER_EXTRA_ARGS=[]
+MEMORY_PRESSURE_WRITE=c29tZSAyMDAwMDAgMjAwMDAwMAA=
+HOST_TRIPLET=aarch64-linux-android
+OBSCURA_STEALTH=true
+INSTALL_PKG_CONFIG_DIR=/home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33/pkgconfig
+lame_PREFIX=/home/satori/.cache/retrolunar/nestdir/lame@aarch64-android33
+CXX_aarch64_linux_android=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android33-clang++
+XMODIFIERS=@im=ibus
+TERMINAL_CONTAINER_MEMORY=5120
+DESKTOP_SESSION=cinnamon
+HERMES_SESSION_USER_ID_ALT=
+SSH_AGENT_PID=10160
+TERMINAL_VERCEL_RUNTIME=
+GPG_TTY=not a tty
+EDITOR=/usr/bin/nano
+TERMINAL_DEGRADED_MODE=warn
+TARGET_TRIPLET=aarch64-linux-android
+PWD=/home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz
+XDG_SESSION_DESKTOP=cinnamon
+LOGNAME=satori
+HERMES_REAL_HOME=/home/satori
+XDG_SESSION_TYPE=x11
+TERMINAL_DOCKER_SHM_SIZE=1g
+BROWSER_SESSION_TIMEOUT=300
+CFLAGS_aarch64_linux_android=-O2 -fPIC -DANDROID -isystem /home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include
+gl_cv_func_strcasecmp_works=yes
+WEB_TOOLS_DEBUG=false
+SYSTEMD_EXEC_PID=1698062
+HERMES_SESSION_CHAT_ID=8124671829
+CXX=aarch64-linux-android33-clang++
+CXXFLAGS=-O2 -fPIC -DANDROID
+XAUTHORITY=/run/lightdm/satori/xauthority
+TERMINAL_TEMP_DIR=
+SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
+XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/satori
+CARGO_TARGET_AARCH64_LINUX_ANDROID_LINKER=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android33-clang
+OUTPKG=/home/satori/.cache/retrolunar/nestdir/store/7ad63cb9299d5fdcef441cce0276acd72de7bd47ee01ae6bb6474b4eddd43869
+CARGO_BUILD_TARGET=aarch64-linux-android
+LDFLAGS=-march=armv8-a -Wl,-z,max-page-size=16384 -Wl,--gc-sections -Os -ffunction-sections -fdata-sections -lc -lm -ldl -llog -L/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/33  -Wl,--hash-style=both -Wl,--exclude-libs,libgcc.a -Wl,--exclude-libs,libunwind.a
+HOME=/home/satori
+IMAGE_TOOLS_DEBUG=false
+LANG=en_US.UTF-8
+HERMES_SESSION_ID=
+XDG_CURRENT_DESKTOP=X-Cinnamon
+HERMES_SESSION_PLATFORM=telegram
+TERMINAL_DOCKER_RUN_AS_HOST_USER=False
+MEMORY_PRESSURE_WATCH=/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/hermes-gateway.service/memory.pressure
+TERMINAL_CONTAINER_DISK=51200
+__MISE_DIFF=eAFqWVjGtDg/J6VhcV5qefMaRz+XIH9Pl3gPf1/Xm+5JOYnZqcZWxkZGySlJaZZGlqkGJoaWJoYpqUaWBskppuYGZoYpqamJJpYGZmZGBkZpFgaGFmZJSUbmBubmhonmScamKUYGphtgpga7eMcH+fuHUM3klV6OYY6ojrU0TTNPM0y0SEu1NExLM081M7M0SUw1SEy1SDU0N01Ltkw0TrU0Tba0tEhKNTBOSbJIS7Y0SjMxs0gzTzZIS01dUpBYkjH1ZqB+Rn5uqn5xYkl+Uaa+Xk5+cmKOfnFGYlGqfm5mcap+Zl5xSWJOTrF+Yl5KUX5mim5xSrZ+TmJJanGJfnJuSk5mXqpuSX5+TrG+kbGegX5SZt5NTwqMBKwgJ7EkLb8oF2LmTV8KjEoqzcxJgZijb2ymZ6BncNOVWOPSixJTclL1LfXM9Az1IRxdCAfkQUtijclKLEvUNwLZbahtAQobAOoJ23o
+ZLIB_PACKAGE_CONFIG_PATH=/home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33/pkgconfig/zlib.pc
+MESON_CROSS_FILE=/home/satori/.cache/retrolunar/repos/default/system@aarch64-android33/crossfile-aarch64-android33.ini
+MESON_FLAGS=--prefix=/home/satori/.cache/retrolunar/nestdir/store/7ad63cb9299d5fdcef441cce0276acd72de7bd47ee01ae6bb6474b4eddd43869 --cross-file /home/satori/.cache/retrolunar/repos/default/system@aarch64-android33/crossfile-aarch64-android33.ini
+TERMINAL_DOCKER_NETWORK=True
+CARGO_TARGET_AARCH64_LINUX_ANDROID_AR=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar
+TERMINAL_MODAL_MODE=auto
+opus_PREFIX=/home/satori/.cache/retrolunar/nestdir/opus@aarch64-android33
+RUSTFLAGS=
+HERMES_BROWSER_CONTROL_TRANSPORT_FAMILY=
+FFMPEG_KIT_BUILD_TYPE=android
+TMPDIR=/home/satori/.hermes/cache/scratch
+CMAKE_PREFIX_PATH=/home/satori/.cache/retrolunar/nestdir/ffmpeg-kit-ffmpeg-8@aarch64-android33;/home/satori/.cache/retrolunar/nestdir/libvpx@aarch64-android33;/home/satori/.cache/retrolunar/nestdir/opus@aarch64-android33;/home/satori/.cache/retrolunar/nestdir/lame@aarch64-android33;
+XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+API=33
+HERMES_CRON_SESSION=
+PYTHON_SITE=lib/python3.14/site-packages
+CPPFLAGS=-I/home/satori/.cache/retrolunar/nestdir/ffmpeg-kit-ffmpeg-8@aarch64-android33/include -I/home/satori/.cache/retrolunar/nestdir/libvpx@aarch64-android33/include -I/home/satori/.cache/retrolunar/nestdir/opus@aarch64-android33/include -I/home/satori/.cache/retrolunar/nestdir/lame@aarch64-android33/include 
+TERMINAL_TIMEOUT=180
+LD=ld.lld
+TERMINAL_DOCKER_SNAP_COMPAT=False
+INVOCATION_ID=43f09f40885745168c6d8b9ab1088921
+AUTOCONF_CONFIGURE_FLAGS=--host=aarch64-linux-android --build=x86_64-pc-linux-gnu --prefix=/home/satori/.cache/retrolunar/nestdir/store/7ad63cb9299d5fdcef441cce0276acd72de7bd47ee01ae6bb6474b4eddd43869
+RECIPEDIR=/home/satori/ond/git/ffmpeg-kit-next/recipes/ffmpeg-kit-next-8
+DEPENDENCY_REBUILT_openh264=1
+BUILD_TRIPLET=x86_64-pc-linux-gnu
+CXXFLAGS_aarch64_linux_android=-O2 -fPIC -DANDROID
+HERMES_AGENT=true
+libvpx_PREFIX=/home/satori/.cache/retrolunar/nestdir/libvpx@aarch64-android33
+MANAGERPID=9810
+ac_cv_c_bigendian=no
+HERMES_UI_SESSION_ID=
+HERMES_SESSION_USER_NAME=Lunatic
+BROWSERBASE_PROXIES=true
+PKG_CONFIG_LIBDIR=/home/satori/.cache/retrolunar/nestdir/ffmpeg-kit-ffmpeg-8@aarch64-android33/lib/pkgconfig:/home/satori/.cache/retrolunar/nestdir/ffmpeg-kit-ffmpeg-8@aarch64-android33/lib64/pkgconfig:/home/satori/.cache/retrolunar/nestdir/ffmpeg-kit-ffmpeg-8@aarch64-android33/share/pkgconfig:/home/satori/.cache/retrolunar/nestdir/libvpx@aarch64-android33/lib/pkgconfig:/home/satori/.cache/retrolunar/nestdir/libvpx@aarch64-android33/lib64/pkgconfig:/home/satori/.cache/retrolunar/nestdir/libvpx@aarch64-android33/share/pkgconfig:/home/satori/.cache/retrolunar/nestdir/opus@aarch64-android33/lib/pkgconfig:/home/satori/.cache/retrolunar/nestdir/opus@aarch64-android33/lib64/pkgconfig:/home/satori/.cache/retrolunar/nestdir/opus@aarch64-android33/share/pkgconfig:/home/satori/.cache/retrolunar/nestdir/lame@aarch64-android33/lib/pkgconfig:/home/satori/.cache/retrolunar/nestdir/lame@aarch64-android33/lib64/pkgconfig:/home/satori/.cache/retrolunar/nestdir/lame@aarch64-android33/share/pkgconfig::/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/pkgconfig:/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/share/pkgconfig
+READELF=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-readelf
+HERMES_TURN_LEASE_TIMEOUT=5
+STEAM_FRAME_FORCE_CLOSE=1
+__MISE_ORIG_PATH=/home/satori/.local/bin:/home/satori/bin:/home/satori/.local/bin:/home/satori/.cargo/bin:/usr/local/bin:/usr/bin
+VISION_TOOLS_DEBUG=false
+TERMINAL_DOCKER_ENV={}
+SED_INLINE=sed -i
+MOZ_GMP_PATH=/usr/lib64/mozilla/plugins/gmp-gmpopenh264/system-installed
+HERMES_QUIET=1
+HERMES_SESSION_PARENT_CHAT_ID=
+XDG_SESSION_CLASS=user
+MAKEFLAGS=-j1
+HERMES_GATEWAY_BUSY_INPUT_MODE=interrupt
+HOST_ARCH=aarch64
+BROWSER_INACTIVITY_TIMEOUT=120
+ANDROID_HOME=/home/satori/.local/share/mise/installs/android-sdk/23.0
+HERMES_SESSION_MESSAGE_ID=
+TOOLCHAIN=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64
+HERMES_SCRATCH_DIR=/home/satori/.hermes/cache/scratch
+HERMES_GATEWAY_PLATFORM_CONNECT_TIMEOUT=30
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+USER=satori
+HOST_OS=android
+TERMINAL_SINGULARITY_IMAGE=docker://nousresearch/hermes-sandbox:desktop
+LIB_INSTALL_BASE=/home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33
+AR=llvm-ar
+ARCH=arm64-v8a
+ORIGINAL_API=33
+AS=aarch64-linux-android33-clang
+HERMES_MEDIA_TRUST_RECENT_SECONDS=600
+__MISE_SESSION=eAHqWVjGtCYnPzElNSW+JD8/p3jCOigvOT8vLTO9eOJNVf2M/NxU/eLEkvyiTH09iLh+bmZxqj6ErVeSn5uzBsKOL0gsySiesDg1r6x5jaOfS5C/p0u8h7+v6033pJzE7FRjK2Mjo+SUpDRLI8tUAxNDSxPDlFQjS4PkFFNzAzPDlNTURBNLAzMzIwOjNAsDQwuzpCQjcwNzc8NE8yRj0xQjA9MNMFODXbzjg/z9Q6hm8kovxzBHVMdamqaZpxkmWqSlWhqmpZmnmplZmiSmGiSmWqQampumJVsmGqdamiZbWlokpRoYpyRZpCVbGqWZmFmkmScbpKWmLk/MyUwsTi1uWFWSWpQYn5aZk1o8AbDV5YklyRkQzmQig3cfaiTk5Ccn5ugXZyQWpYJj4qYeVvmSxBKIvH5JUWlxSWqKLiSWihenZBbdVEHRk5+Xop+eWaKflpZbkJqum51ZopuXWlGyJjWvLL4ssSg+I7E4Y0OSsaVhapqpQZK5YbKhqYXZ2pzEktTikvjSgpTEktQjAgxwwLjQwbiHbUdGfn52PMiI4oz8opLk0pLi+NK84tSSwwAYpN1v
+TEMP=/home/satori/.hermes/cache/scratch
+HERMES_SESSION_CHAT_NAME=Lunatic
+DISPLAY=:0
+CMAKE_FLAGS=-DCMAKE_TOOLCHAIN_FILE=/home/satori/.cache/retrolunar/repos/default/system@aarch64-android33/aarch64-linux-android33-toolchain.cmake -DCMAKE_INSTALL_PREFIX=/home/satori/.cache/retrolunar/nestdir/store/7ad63cb9299d5fdcef441cce0276acd72de7bd47ee01ae6bb6474b4eddd43869 -DCMAKE_TRY_COMPILE_TARGET_TYPE=STATIC_LIBRARY -DTHREADS_PREFER_PTHREAD_FLAG=ON -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_MAKE_PROGRAM=/usr/bin/make
+SHLVL=3
+HERMES_BROWSER_CONTROL_PRINCIPAL=
+NM=llvm-nm
+HERMES_MEDIA_DELIVERY_STRICT=0
+CORES=1
+NO_OUTPUT_REDIRECTION=1
+NESTDIR=/home/satori/.cache/retrolunar/nestdir
+ANDROID_SDK_ROOT=/home/satori/.local/share/mise/installs/android-sdk/23.0
+BUILD_JOBS=1
+QT_IM_MODULE=ibus
+TERMINAL_DAYTONA_IMAGE=nousresearch/hermes-sandbox:desktop
+FFMPEG_KIT_TMPDIR=/home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/.tmp
+CMAKE_MAKE_PROGRAM=/usr/bin/make
+TERMINAL_MODAL_IMAGE=nikolaik/python-nodejs:python3.11-nodejs20
+TERMINAL_PERSISTENT_SHELL=True
+SYSROOT=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/sysroot
+MANAGERPIDFDID=17296
+TERMINAL_HOME_MODE=auto
+NDK=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865
+TERMINAL_CWD=/home/satori
+ANDROID_API=33
+LD_LIBRARY_PATH=/home/satori/.cache/retrolunar/nestdir/ffmpeg-kit-next-8@source/lib:/home/satori/.cache/retrolunar/nestdir/ffmpeg-kit-next-8@source/lib64:
+PACKAGEDIR=/home/satori/ond/git/ffmpeg-kit-next/recipes:/home/satori/.cache/retrolunar/repos/default
+XDG_RUNTIME_DIR=/run/user/1000
+_config_version=50
+HERMES_SESSION_PROFILE=
+HERMES_SESSION_CHAT_TYPE=dm
+HERMES_SESSION_THREAD_ID=
+OBJCOPY=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-objcopy
+DEBUGINFOD_URLS=ima:enforcing https://debuginfod.fedoraproject.org/ ima:ignore 
+CC_aarch64_linux_android=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android33-clang
+DEBUGINFOD_IMA_CERT_PATH=/etc/keys/ima:
+BASEDIR=/home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz
+TERMINAL_DOCKER_VOLUMES=[]
+HERMES_SESSION_SCOPE_ID=
+ANDROID_NDK_ROOT=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865
+_HERMES_GATEWAY=1
+STRIP=llvm-strip
+ffmpeg_kit_next_8_source_PREFIX=/home/satori/.cache/retrolunar/nestdir/ffmpeg-kit-next-8@source
+JOURNAL_STREAM=10:3359925
+TERMINAL_DOCKER_MOUNT_CWD_TO_WORKSPACE=False
+GTK3_MODULES=xapp-gtk3-module
+MISE_SHELL=bash
+XDG_DATA_DIRS=/home/satori/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+HERMES_SESSION_SOURCE=
+TERMINAL_VERCEL_IMAGE=vercel/sandbox/universal:latest
+HERMES_MAX_ITERATIONS=150
+ffmpeg_kit_ffmpeg_8_PREFIX=/home/satori/.cache/retrolunar/nestdir/ffmpeg-kit-ffmpeg-8@aarch64-android33
+TMP=/home/satori/.hermes/cache/scratch
+OBJDUMP=/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-objdump
+PATH=/home/satori/.cache/retrolunar/nestdir/ffmpeg-kit-next-8@source/bin:/home/satori/.local/share/mise/installs/android-sdk/latest/cmdline-tools/23.0/bin:/home/satori/.local/share/mise/installs/android-sdk/latest/platform-tools:/home/satori/.local/share/mise/installs/android-sdk/latest/build-tools/36.0.0:/home/satori/.local/share/mise/installs/gradle/9.6.1/gradle-9.6.1/bin:/home/satori/.local/share/mise/installs/java/26.0.1+8/bin:/home/satori/.local/share/mise/shims:/home/satori/.local/bin:/home/satori/bin:/home/satori/.local/bin:/home/satori/.cargo/bin:/usr/local/bin:/usr/bin:/home/satori/.hermes/tools/agent-browser-0.26.0-linux-x64/bin:/home/satori/.hermes/tools/cua-driver-0.21.0-linux-x64:/home/satori/.hermes/tools/ffmpeg-9.0.1-linux-x64/bin:/home/satori/.hermes/tools/node-26.7.0-linux-x64/bin:/home/satori/.hermes/tools/npm-12.0.2-linux-x64/bin:/home/satori/.hermes/tools/python-3.14.7+20260901-linux-x64/bin:/home/satori/.hermes/tools/ripgrep-15.2.0-linux-x64:/home/satori/.hermes/hermes-agent/.hermes/bin:/home/satori/.hermes/installs/9b28cf310340172f/environments/cd863472f4154ccd861ea747bbc8732d/venv/bin:/home/satori/.hermes/hermes-agent/node_modules/.bin:/usr/local/sbin:/usr/sbin:/sbin:/bin:/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/bin
+GDMSESSION=cinnamon
+CC=aarch64-linux-android33-clang
+CFLAGS=-I/home/satori/.local/share/mise/installs/android-sdk/23.0/ndk/29.0.14206865/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -march=armv8-a -DFFMPEG_KIT_ARM64_V8A -std=c99 -Wno-unused-function -fstrict-aliasing -DANDROID_NDK -fPIC -DANDROID -D__ANDROID__ -D__ANDROID_MIN_SDK_VERSION__=33 -DFFMPEG_KIT_MIN_SDK=33  -Os -ffunction-sections -fdata-sections 
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+TERMINAL_DOCKER_IMAGE_PINNED=0
+BROWSERBASE_ADVANCED_STEALTH=false
+MAIL=/var/spool/mail/satori
+HERMES_SESSION_KEY=agent:main:telegram:dm:8124671829
+TERMINAL_CONTAINER_PERSISTENT=True
+TERMINAL_DOCKER_IMAGE=nousresearch/hermes-sandbox:desktop
+MOA_TOOLS_DEBUG=false
+DEPENDENCY_REBUILT_libvpx=1
+TERMINAL_LIFETIME_SECONDS=300
+SYSDIR=/home/satori/.cache/retrolunar/repos/default/system@aarch64-android33
+RANLIB=llvm-ranlib
+HERMES_STARTUP_WATCHDOG_TIMEOUT_S=300
+TERMINAL_DOCKER_SHARED_CONTAINER_KEY=
+OLDPWD=/home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz
+HERMES_HOME=/home/satori/.hermes
+CMAKE_TOOLCHAIN_FILE=/home/satori/.cache/retrolunar/repos/default/system@aarch64-android33/aarch64-linux-android33-toolchain.cmake
+_=/usr/bin/env
+----------------------------------------------------------------
+
+INFO: System information
+
+INFO: Linux fedora 7.2.9-200.fc44.x86_64 #1 SMP PREEMPT_DYNAMIC Sat Oct  3 19:59:55 UTC 2026 x86_64 GNU/Linux
+
+----------------------------------------------------------------
+
+INFO: Enabling library cpu-features
+
+INFO: Cleaning workspace for ffmpeg
+
+Updated 0 paths from the index
+Updated 0 paths from the index
+Updated 0 paths from the index
+Updated 0 paths from the index
+Updated 0 paths from the index
+
+INFO: Enabled custom ffmpeg-kit protocols
+
+INFO: Validating custom ffmpeg-kit protocol source patches
+
+INFO: Running host-only ffmpeg-kit protocol parser/runtime tests
+
+INFO: ffkit protocol parser/runtime tests passed
+
+install prefix            /home/satori/.cache/retrolunar/nestdir/tmp/work-BTwXGz/prebuilt/android-arm64-33/ffmpeg
+source path               .
+C compiler                aarch64-linux-android33-clang
+C library                 bionic
+host C compiler           gcc
+host C library            glibc
+ARCH                      aarch64 (armv8-a)
+big-endian                no
+runtime cpu detection     yes
+NEON enabled              yes
+DOTPROD enabled           yes
+I8MM enabled              yes
+SVE enabled               yes
+SVE2 enabled              yes
+SME enabled               yes
+SME-I16I64 enabled        yes
+SME2 enabled              yes
+debug symbols             no
+strip symbols             yes
+optimize for size         yes
+optimizations             yes
+static                    no
+shared                    yes
+network support           yes
+threading support         pthreads
+safe bitstream reader     yes
+texi2html enabled         no
+perl enabled              yes
+pod2man enabled           yes
+makeinfo enabled          no
+makeinfo supports HTML    no
+experimental features     yes
+xmllint enabled           yes
+
+External libraries:
+iconv                   jni
+
+External libraries providing hardware acceleration:
+v4l2_m2m
+
+Libraries:
+avcodec                 avformat                swscale
+avdevice                avutil
+avfilter                swresample
+
+Programs:
+
+Enabled decoders:
+aac                     ffwavesynth             pfm
+aac_fixed               fic                     pgm
+aac_latm                fits                    pgmyuv
+aasc                    flac                    pgssub
+ac3                     flic                    pgx
+ac3_fixed               flv                     phm
+acelp_kelvin            fmvc                    photocd
+adpcm_4xm               fourxm                  pictor
+adpcm_adx               fraps                   pixlet
+adpcm_afc               frwu                    pjs
+adpcm_agm               ftr                     ppm
+adpcm_aica              g723_1                  prores
+adpcm_argo              g728                    prores_raw
+adpcm_ct                g729                    prosumer
+adpcm_dtk               gdv                     psd
+adpcm_ea                gem                     ptx
+adpcm_ea_maxis_xa       gif                     qcelp
+adpcm_ea_r1             gremlin_dpcm            qdm2
+adpcm_ea_r2             gsm                     qdmc
+adpcm_ea_r3             gsm_ms                  qdraw
+adpcm_ea_xas            h261                    qoa
+adpcm_g722              h263                    qoi
+adpcm_g726              h263_v4l2m2m            qpeg
+adpcm_g726le            h263i                   qtrle
+adpcm_ima_acorn         h263p                   r10k
+adpcm_ima_alp           h264                    r210
+adpcm_ima_amv           h264_v4l2m2m            ra_144
+adpcm_ima_apc           hap                     ra_288
+adpcm_ima_apm           hca                     ralf
+adpcm_ima_cunning       hcom                    rawvideo
+adpcm_ima_dat4          hdr                     realtext
+adpcm_ima_dk3           hevc                    rka
+adpcm_ima_dk4           hevc_v4l2m2m            rl2
+adpcm_ima_ea_eacs       hnm4_video              roq
+adpcm_ima_ea_sead       hq_hqa                  roq_dpcm
+adpcm_ima_iss           hqx                     rpza
+adpcm_ima_moflex        huffyuv                 rtv1
+adpcm_ima_mtf           hymt                    rv10
+adpcm_ima_oki           iac                     rv20
+adpcm_ima_qt            idcin                   rv30
+adpcm_ima_rad           idf                     rv40
+adpcm_ima_smjpeg        iff_ilbm                rv60
+adpcm_ima_ssi           ilbc                    s302m
+adpcm_ima_wav           imc                     sami
+adpcm_ima_ws            imm4                    sanm
+adpcm_ima_xbox          imm5                    sbc
+adpcm_ms                indeo2                  scpr
+adpcm_mtaf              indeo3                  sdx2_dpcm
+adpcm_psx               indeo4                  sga
+adpcm_sanyo             indeo5                  sgi
+adpcm_sbpro_2           interplay_acm           sgirle
+adpcm_sbpro_3           interplay_dpcm          sheervideo
+adpcm_sbpro_4           interplay_video         shorten
+adpcm_swf               ipu                     simbiosis_imx
+adpcm_thp               jacosub                 sipr
+adpcm_thp_le            jpeg2000                siren
+adpcm_vima              jpegls                  smackaud
+adpcm_xa                jv                      smacker
+adpcm_xmd               kgv1                    smc
+adpcm_yamaha            kmvc                    smvjpeg
+adpcm_zork              lagarith                snow
+agm                     lead                    sol_dpcm
+aic                     loco                    sonic
+alac                    m101                    sp5x
+alias_pix               mace3                   speedhq
+als                     mace6                   speex
+amrnb                   magicyuv                srt
+amrwb                   mdec                    ssa
+amv                     media100                stl
+anm                     metasound               subrip
+ansi                    microdvd                subviewer
+anull                   mimic                   subviewer1
+apac                    misc4                   sunrast
+ape                     mjpeg                   svq1
+aptx                    mjpegb                  svq3
+aptx_hd                 mlp                     tak
+apv                     mmvideo                 targa
+arbc                    mobiclip                targa_y216
+argo                    motionpixels            text
+ass                     movtext                 theora
+asv1                    mp1                     thp
+asv2                    mp1float                tiertexseqvideo
+atrac1                  mp2                     tiff
+atrac3                  mp2float                tmv
+atrac3al                mp3                     truehd
+atrac3p                 mp3adu                  truemotion1
+atrac3pal               mp3adufloat             truemotion2
+atrac9                  mp3float                truemotion2rt
+aura                    mp3on4                  truespeech
+aura2                   mp3on4float             tscc2
+av1                     mpc7                    tta
+avrn                    mpc8                    twinvq
+avrp                    mpeg1_v4l2m2m           txd
+avs                     mpeg1video              ulti
+avui                    mpeg2_v4l2m2m           utvideo
+bethsoftvid             mpeg2video              v210
+bfi                     mpeg4                   v210x
+bink                    mpeg4_v4l2m2m           v308
+binkaudio_dct           mpegvideo               v408
+binkaudio_rdft          mpl2                    v410
+bintext                 msa1                    vb
+bitpacked               msmpeg4v1               vble
+bmp                     msmpeg4v2               vbn
+bmv_audio               msmpeg4v3               vc1
+bmv_video               msnsiren                vc1_v4l2m2m
+bonk                    msp2                    vc1image
+brender_pix             msrle                   vcr1
+c93                     mss1                    vmdaudio
+cavs                    mss2                    vmdvideo
+cbd2_dpcm               msvideo1                vmix
+ccaption                mszh                    vmnc
+cdgraphics              mts2                    vnull
+cdtoons                 mv30                    vorbis
+cdxl                    mvc1                    vp3
+cfhd                    mvc2                    vp4
+cinepak                 mvdv                    vp5
+clearvideo              mxpeg                   vp6
+cljr                    nellymoser              vp6a
+cllc                    notchlc                 vp6f
+comfortnoise            nuv                     vp7
+cook                    on2avc                  vp8
+cpia                    opus                    vp8_v4l2m2m
+cri                     osq                     vp9
+cscd                    paf_audio               vp9_v4l2m2m
+cyuv                    paf_video               vplayer
+dca                     pam                     vqa
+dds                     pbm                     vqc
+derf_dpcm               pcm_alaw                vvc
+dfa                     pcm_bluray              wady_dpcm
+dfpwm                   pcm_dvd                 wavarc
+dirac                   pcm_f16le               wavpack
+dnxhd                   pcm_f24le               wbmp
+dolby_e                 pcm_f32be               webp
+dpx                     pcm_f32le               webvtt
+dsd_lsbf                pcm_f64be               wmalossless
+dsd_lsbf_planar         pcm_f64le               wmapro
+dsd_msbf                pcm_lxf                 wmav1
+dsd_msbf_planar         pcm_mulaw               wmav2
+dsicinaudio             pcm_s16be               wmavoice
+dsicinvideo             pcm_s16be_planar        wmv1
+dss_sp                  pcm_s16le               wmv2
+dst                     pcm_s16le_planar        wmv3
+dvaudio                 pcm_s24be               wmv3image
+dvbsub                  pcm_s24daud             wnv1
+dvdsub                  pcm_s24le               wrapped_avframe
+dvvideo                 pcm_s24le_planar        ws_snd1
+dxtory                  pcm_s32be               xan_dpcm
+dxv                     pcm_s32le               xan_wc3
+eac3                    pcm_s32le_planar        xan_wc4
+eacmv                   pcm_s64be               xbin
+eamad                   pcm_s64le               xbm
+eatgq                   pcm_s8                  xface
+eatgv                   pcm_s8_planar           xl
+eatqi                   pcm_sga                 xma1
+eightbps                pcm_u16be               xma2
+eightsvx_exp            pcm_u16le               xpm
+eightsvx_fib            pcm_u24be               xsub
+escape124               pcm_u24le               xwd
+escape130               pcm_u32be               y41p
+evrc                    pcm_u32le               ylc
+fastaudio               pcm_u8                  yop
+ffv1                    pcm_vidc                yuv4
+ffvhuff                 pcx                     zero12v
+
+Enabled encoders:
+a64multi                hdr                     pgmyuv
+a64multi5               hevc_v4l2m2m            phm
+aac                     huffyuv                 ppm
+ac3                     jpeg2000                prores
+ac3_fixed               jpegls                  prores_aw
+adpcm_adx               ljpeg                   prores_ks
+adpcm_argo              magicyuv                qoi
+adpcm_g722              mjpeg                   qtrle
+adpcm_g726              mlp                     r10k
+adpcm_g726le            movtext                 r210
+adpcm_ima_alp           mp2                     ra_144
+adpcm_ima_amv           mp2fixed                rawvideo
+adpcm_ima_apm           mpeg1video              roq
+adpcm_ima_qt            mpeg2video              roq_dpcm
+adpcm_ima_ssi           mpeg4                   rpza
+adpcm_ima_wav           mpeg4_v4l2m2m           rv10
+adpcm_ima_ws            msmpeg4v2               rv20
+adpcm_ms                msmpeg4v3               s302m
+adpcm_swf               msrle                   sbc
+adpcm_yamaha            msvideo1                sgi
+alac                    nellymoser              smc
+alias_pix               opus                    snow
+amv                     pam                     speedhq
+anull                   pbm                     srt
+aptx                    pcm_alaw                ssa
+aptx_hd                 pcm_bluray              subrip
+ass                     pcm_dvd                 sunrast
+asv1                    pcm_f32be               svq1
+asv2                    pcm_f32le               targa
+avrp                    pcm_f64be               text
+avui                    pcm_f64le               tiff
+bitpacked               pcm_mulaw               truehd
+bmp                     pcm_s16be               tta
+cfhd                    pcm_s16be_planar        ttml
+cinepak                 pcm_s16le               utvideo
+cljr                    pcm_s16le_planar        v210
+comfortnoise            pcm_s24be               v308
+dca                     pcm_s24daud             v408
+dfpwm                   pcm_s24le               v410
+dnxhd                   pcm_s24le_planar        vbn
+dpx                     pcm_s32be               vc2
+dvbsub                  pcm_s32le               vnull
+dvdsub                  pcm_s32le_planar        vorbis
+dvvideo                 pcm_s64be               vp8_v4l2m2m
+dxv                     pcm_s64le               wavpack
+eac3                    pcm_s8                  wbmp
+ffv1                    pcm_s8_planar           webvtt
+ffvhuff                 pcm_u16be               wmav1
+fits                    pcm_u16le               wmav2
+flac                    pcm_u24be               wmv1
+flv                     pcm_u24le               wmv2
+g723_1                  pcm_u32be               wrapped_avframe
+gif                     pcm_u32le               xbm
+h261                    pcm_u8                  xface
+h263                    pcm_vidc                xsub
+h263_v4l2m2m            pcx                     xwd
+h263p                   pfm                     y41p
+h264_v4l2m2m            pgm                     yuv4
+
+Enabled hwaccels:
+
+Enabled parsers:
+aac                     evc                     mpegvideo
+aac_latm                ffv1                    opus
+ac3                     flac                    png
+adx                     ftr                     pnm
+amr                     g723_1                  prores
+apv                     g729                    prores_raw
+av1                     gif                     qoi
+avs2                    gsm                     rv34
+avs3                    h261                    sbc
+bmp                     h263                    sipr
+cavsvideo               h264                    tak
+cook                    hdr                     vc1
+cri                     hevc                    vorbis
+dca                     ipu                     vp3
+dirac                   jpeg2000                vp8
+dnxhd                   jpegxl                  vp9
+dnxuc                   jpegxs                  vvc
+dolby_e                 lcevc                   webp
+dpx                     misc4                   xbm
+dvaudio                 mjpeg                   xma
+dvbsub                  mlp                     xwd
+dvd_nav                 mpeg4video
+dvdsub                  mpegaudio
+
+Enabled demuxers:
+aa                      idcin                   pcm_s16be
+aac                     idf                     pcm_s16le
+aax                     iff                     pcm_s24be
+ac3                     ifv                     pcm_s24le
+ac4                     ilbc                    pcm_s32be
+ace                     image2                  pcm_s32le
+acm                     image2_alias_pix        pcm_s8
+act                     image2_brender_pix      pcm_u16be
+adf                     image2pipe              pcm_u16le
+adp                     image_bmp_pipe          pcm_u24be
+ads                     image_cri_pipe          pcm_u24le
+adx                     image_dds_pipe          pcm_u32be
+aea                     image_dpx_pipe          pcm_u32le
+afc                     image_exr_pipe          pcm_u8
+aiff                    image_gem_pipe          pcm_vidc
+aix                     image_gif_pipe          pdv
+alp                     image_hdr_pipe          pjs
+amr                     image_j2k_pipe          pmp
+amrnb                   image_jpeg_pipe         pp_bnk
+amrwb                   image_jpegls_pipe       pva
+anm                     image_jpegxl_pipe       pvf
+apac                    image_jpegxs_pipe       qcp
+apc                     image_pam_pipe          qoa
+ape                     image_pbm_pipe          r3d
+apm                     image_pcx_pipe          rawvideo
+apng                    image_pfm_pipe          rcwt
+aptx                    image_pgm_pipe          realtext
+aptx_hd                 image_pgmyuv_pipe       redspark
+apv                     image_pgx_pipe          rka
+aqtitle                 image_phm_pipe          rl2
+argo_asf                image_photocd_pipe      rm
+argo_brp                image_pictor_pipe       roq
+argo_cvg                image_png_pipe          rpl
+asf                     image_ppm_pipe          rsd
+asf_o                   image_psd_pipe          rso
+ass                     image_qdraw_pipe        rtp
+ast                     image_qoi_pipe          rtsp
+au                      image_sgi_pipe          s337m
+av1                     image_sunrast_pipe      sami
+avi                     image_svg_pipe          sap
+avr                     image_tiff_pipe         sbc
+avs                     image_vbn_pipe          sbg
+avs2                    image_webp_pipe         scc
+avs3                    image_xbm_pipe          scd
+bethsoftvid             image_xpm_pipe          sdns
+bfi                     image_xwd_pipe          sdp
+bfstm                   ingenient               sdr2
+bink                    ipmovie                 sds
+binka                   ipu                     sdx
+bintext                 ircam                   segafilm
+bit                     iss                     ser
+bitpacked               iv8                     sga
+bmv                     ivf                     shorten
+boa                     ivr                     siff
+bonk                    jacosub                 simbiosis_imx
+brstm                   jpegxl_anim             sln
+c93                     jv                      smacker
+caf                     kux                     smjpeg
+cavsvideo               kvag                    smush
+cdg                     laf                     sol
+cdxl                    lc3                     sox
+cine                    live_flv                spdif
+codec2                  lmlm4                   srt
+codec2raw               loas                    stl
+concat                  lrc                     str
+data                    luodat                  subviewer
+daud                    lvf                     subviewer1
+dcstr                   lxf                     sup
+derf                    m4v                     svag
+dfa                     matroska                svs
+dfpwm                   mca                     swf
+dhav                    mcc                     tak
+dirac                   mgsts                   tedcaptions
+dnxhd                   microdvd                thp
+dsf                     mjpeg                   threedostr
+dsicin                  mjpeg_2000              tiertexseq
+dss                     mlp                     tmv
+dts                     mlv                     truehd
+dtshd                   mm                      tta
+dv                      mmf                     tty
+dvbsub                  mods                    txd
+dvbtxt                  moflex                  ty
+dxa                     mov                     usm
+ea                      mp3                     v210
+ea_cdata                mpc                     v210x
+eac3                    mpc8                    vag
+epaf                    mpegps                  vc1
+evc                     mpegts                  vc1t
+ffmetadata              mpegtsraw               vividas
+filmstrip               mpegvideo               vivo
+fits                    mpjpeg                  vmd
+flac                    mpl2                    vobsub
+flic                    mpsub                   voc
+flv                     msf                     vpk
+fourxm                  msnwc_tcp               vplayer
+frm                     msp                     vqf
+fsb                     mtaf                    vvc
+fwse                    mtv                     w64
+g722                    musx                    wady
+g723_1                  mv                      wav
+g726                    mvi                     wavarc
+g726le                  mxf                     wc3
+g728                    mxg                     webm_dash_manifest
+g729                    nc                      webvtt
+gdv                     nistsphere              wsaud
+genh                    nsp                     wsd
+gif                     nsv                     wsvqa
+gsm                     nut                     wtv
+gxf                     nuv                     wv
+h261                    obu                     wve
+h263                    ogg                     xa
+h264                    oma                     xbin
+hca                     osq                     xmd
+hcom                    paf                     xmv
+hevc                    pcm_alaw                xvag
+hls                     pcm_f32be               xwma
+hnm                     pcm_f32le               yop
+hxvs                    pcm_f64be               yuv4mpegpipe
+iamf                    pcm_f64le
+ico                     pcm_mulaw
+
+Enabled muxers:
+a64                     h263                    pcm_s16le
+ac3                     h264                    pcm_s24be
+ac4                     hash                    pcm_s24le
+adts                    hds                     pcm_s32be
+adx                     hevc                    pcm_s32le
+aea                     hls                     pcm_s8
+aiff                    iamf                    pcm_u16be
+alp                     ico                     pcm_u16le
+amr                     ilbc                    pcm_u24be
+amv                     image2                  pcm_u24le
+apm                     image2pipe              pcm_u32be
+apng                    ipod                    pcm_u32le
+aptx                    ircam                   pcm_u8
+aptx_hd                 ismv                    pcm_vidc
+apv                     ivf                     psp
+argo_asf                jacosub                 rawvideo
+argo_cvg                kvag                    rcwt
+asf                     latm                    rm
+asf_stream              lc3                     roq
+ass                     lrc                     rso
+ast                     m4v                     rtp
+au                      matroska                rtp_mpegts
+avi                     matroska_audio          rtsp
+avif                    mcc                     sap
+avm2                    md5                     sbc
+avs2                    microdvd                scc
+avs3                    mjpeg                   segafilm
+bit                     mkvtimestamp_v2         segment
+caf                     mlp                     smjpeg
+cavsvideo               mmf                     smoothstreaming
+codec2                  mov                     sox
+codec2raw               mp2                     spdif
+crc                     mp3                     spx
+dash                    mp4                     srt
+data                    mpeg1system             stream_segment
+daud                    mpeg1vcd                streamhash
+dfpwm                   mpeg1video              sup
+dirac                   mpeg2dvd                swf
+dnxhd                   mpeg2svcd               tee
+dts                     mpeg2video              tg2
+dv                      mpeg2vob                tgp
+eac3                    mpegts                  truehd
+evc                     mpjpeg                  tta
+f4v                     mxf                     ttml
+ffmetadata              mxf_d10                 uncodedframecrc
+fifo                    mxf_opatom              vc1
+filmstrip               null                    vc1t
+fits                    nut                     voc
+flac                    obu                     vvc
+flv                     oga                     w64
+framecrc                ogg                     wav
+framehash               ogv                     webm
+framemd5                oma                     webm_chunk
+g722                    opus                    webm_dash_manifest
+g723_1                  pcm_alaw                webp
+g726                    pcm_f32be               webvtt
+g726le                  pcm_f32le               wsaud
+gif                     pcm_f64be               wtv
+gsm                     pcm_f64le               wv
+gxf                     pcm_mulaw               yuv4mpegpipe
+h261                    pcm_s16be
+
+Enabled protocols:
+android_content         ffrtmphttp              prompeg
+async                   file                    rtmp
+cache                   ftp                     rtmpt
+concat                  gopher                  rtp
+concatf                 http                    srtp
+crypto                  httpproxy               subfile
+data                    icecast                 tcp
+fd                      md5                     tee
+ffkitmem                mmsh                    udp
+ffkitsaf                mmst                    udplite
+ffkitstream             pipe                    unix
+
+Enabled filters:
+a3dscope                colorspectrum           normalize
+aap                     colortemperature        null
+abench                  compand                 nullsink
+abitscope               compensationdelay       nullsrc
+acompressor             concat                  oscilloscope
+acontrast               convolution             overlay
+acopy                   convolve                pad
+acrossfade              copy                    pal100bars
+acrossover              corr                    pal75bars
+acrusher                crop                    palettegen
+acue                    crossfeed               paletteuse
+addroi                  crystalizer             pan
+adeclick                cue                     perlin
+adeclip                 curves                  perms
+adecorrelate            datascope               photosensitivity
+adelay                  dblur                   pixdesctest
+adenorm                 dcshift                 pixelize
+aderivative             dctdnoiz                pixscope
+adrawgraph              deband                  premultiply
+adrc                    deblock                 premultiply_dynamic
+adynamicequalizer       decimate                prewitt
+adynamicsmooth          deconvolve              pseudocolor
+aecho                   dedot                   psnr
+aemphasis               deesser                 qp
+aeval                   deflate                 random
+aevalsrc                deflicker               readeia608
+aexciter                dejudder                readvitc
+afade                   deshake                 realtime
+afdelaysrc              despill                 remap
+afftdn                  detelecine              removegrain
+afftfilt                dialoguenhance          removelogo
+afir                    dilation                replaygain
+afireqsrc               displace                reverse
+afirsrc                 doubleweave             rgbashift
+aformat                 drawbox                 rgbtestsrc
+afreqshift              drawgraph               roberts
+afwtdn                  drawgrid                rotate
+agate                   drmeter                 scale
+agraphmonitor           dynaudnorm              scale2ref
+ahistogram              earwax                  scdet
+aiir                    ebur128                 scharr
+aintegral               edgedetect              scroll
+ainterleave             elbg                    segment
+alatency                entropy                 select
+alimiter                epx                     selectivecolor
+allpass                 equalizer               sendcmd
+allrgb                  erosion                 separatefields
+allyuv                  estdif                  setdar
+aloop                   exposure                setfield
+alphaextract            extractplanes           setparams
+alphamerge              extrastereo             setpts
+amerge                  fade                    setrange
+ametadata               feedback                setsar
+amix                    fftdnoiz                settb
+amovie                  fftfilt                 shear
+amplify                 field                   showcqt
+amultiply               fieldhint               showcwt
+anequalizer             fieldmatch              showfreqs
+anlmdn                  fieldorder              showinfo
+anlmf                   fillborders             showpalette
+anlms                   firequalizer            showspatial
+anoisesrc               flanger                 showspectrum
+anull                   floodfill               showspectrumpic
+anullsink               format                  showvolume
+anullsrc                fps                     showwaves
+apad                    framepack               showwavespic
+aperms                  framerate               shuffleframes
+aphasemeter             framestep               shufflepixels
+aphaser                 freezedetect            shuffleplanes
+aphaseshift             freezeframes            sidechaincompress
+apsnr                   fsync                   sidechaingate
+apsyclip                gblur                   sidedata
+apulsator               geq                     sierpinski
+arealtime               gradfun                 signalstats
+aresample               gradients               silencedetect
+areverse                graphmonitor            silenceremove
+arls                    grayworld               sinc
+arnndn                  greyedge                sine
+asdr                    guided                  siti
+asegment                haas                    smptebars
+aselect                 haldclut                smptehdbars
+asendcmd                haldclutsrc             sobel
+asetnsamples            hdcd                    spectrumsynth
+asetpts                 headphone               speechnorm
+asetrate                hflip                   split
+asettb                  highpass                ssim
+ashowinfo               highshelf               ssim360
+asidedata               hilbert                 stereotools
+asisdr                  histogram               stereowiden
+asoftclip               hqx                     streamselect
+aspectralstats          hstack                  superequalizer
+asplit                  hsvhold                 surround
+astats                  hsvkey                  swaprect
+astreamselect           hue                     swapuv
+asubboost               huesaturation           tblend
+asubcut                 hwdownload              telecine
+asupercut               hwmap                   testsrc
+asuperpass              hwupload                testsrc2
+asuperstop              hysteresis              thistogram
+atadenoise              identity                threshold
+atempo                  idet                    thumbnail
+atilt                   il                      tile
+atrim                   inflate                 tiltandshift
+avectorscope            interleave              tiltshelf
+avgblur                 join                    tlut2
+avsynctest              kirsch                  tmedian
+axcorrelate             lagfun                  tmidequalizer
+backgroundkey           latency                 tmix
+bandpass                lenscorrection          tonemap
+bandreject              life                    tpad
+bass                    limitdiff               transpose
+bbox                    limiter                 treble
+bench                   loop                    tremolo
+bilateral               loudnorm                trim
+biquad                  lowpass                 unpremultiply
+bitplanenoise           lowshelf                unsharp
+blackdetect             lumakey                 untile
+blend                   lut                     v360
+blockdetect             lut1d                   varblur
+blurdetect              lut2                    vectorscope
+bm3d                    lut3d                   vflip
+bwdif                   lutrgb                  vfrdet
+cas                     lutyuv                  vibrance
+ccrepack                mandelbrot              vibrato
+cellauto                maskedclamp             vif
+channelmap              maskedmax               vignette
+channelsplit            maskedmerge             virtualbass
+chorus                  maskedmin               vmafmotion
+chromahold              maskedthreshold         volume
+chromakey               maskfun                 volumedetect
+chromanr                mcompand                vstack
+chromashift             median                  w3fdif
+ciescope                mergeplanes             waveform
+codecview               mestimate               weave
+color                   metadata                xbr
+colorbalance            midequalizer            xcorrelate
+colorchannelmixer       minterpolate            xfade
+colorchart              mix                     xmedian
+colorcontrast           monochrome              xpsnr
+colorcorrect            morpho                  xstack
+colordetect             movie                   yadif
+colorhold               msad                    yaepblur
+colorize                multiply                yuvtestsrc
+colorkey                negate                  zoneplate
+colorlevels             nlmeans                 zoompan
+colormap                noformat
+colorspace              noise
+
+Enabled bsfs:
+aac_adtstoasc           h264_mp4toannexb        pgs_frame_merge
+apv_metadata            h264_redundant_pps      prores_metadata
+av1_frame_merge         hapqa_extract           remove_extradata
+av1_frame_split         hevc_metadata           setts
+av1_metadata            hevc_mp4toannexb        showinfo
+chomp                   imx_dump_header         smpte436m_to_eia608
+dca_core                lcevc_metadata          text2movsub
+dovi_rpu                media100_to_mjpegb      trace_headers
+dts2pts                 mjpeg2jpeg              truehd_core
+dump_extradata          mjpega_dump_header      vp9_metadata
+dv_error_marker         mov2textsub             vp9_raw_reorder
+eac3_core               mpeg2_metadata          vp9_superframe
+eia608_to_smpte436m     mpeg4_unpack_bframes    vp9_superframe_split
+evc_frame_merge         noise                   vvc_metadata
+extract_extradata       null                    vvc_mp4toannexb
+filter_units            opus_metadata
+h264_metadata           pcm_rechunk
+
+Enabled indevs:
+android_camera          lavfi                   v4l2
+
+Enabled outdevs:
+v4l2
+
+License: LGPL version 3 or later
+INSTALL	doc/examples/avio_http_serve_files.c
+INSTALL	doc/examples/avio_list_dir.c
+INSTALL	doc/examples/avio_read_callback.c
+INSTALL	doc/examples/decode_audio.c
+INSTALL	doc/examples/decode_filter_audio.c
+INSTALL	doc/examples/decode_filter_video.c
+INSTALL	doc/examples/decode_video.c
+INSTALL	doc/examples/demux_decode.c
+INSTALL	doc/examples/encode_audio.c
+INSTALL	doc/examples/encode_video.c
+INSTALL	doc/examples/extract_mvs.c
+INSTALL	doc/examples/filter_audio.c
+INSTALL	doc/examples/hw_decode.c
+INSTALL	doc/examples/mux.c
+INSTALL	doc/examples/qsv_decode.c
+INSTALL	doc/examples/qsv_transcode.c
+INSTALL	doc/examples/remux.c
+INSTALL	doc/examples/resample_audio.c
+INSTALL	doc/examples/scale_video.c
+INSTALL	doc/examples/show_metadata.c
+INSTALL	doc/examples/transcode_aac.c
+INSTALL	doc/examples/transcode.c
+INSTALL	doc/examples/vaapi_encode.c
+INSTALL	doc/examples/vaapi_transcode.c
+INSTALL	doc/examples/README
+INSTALL	doc/examples/Makefile
+INSTALL	doc/examples/avio_http_serve_files.c
+INSTALL	doc/examples/avio_list_dir.c
+INSTALL	doc/examples/avio_read_callback.c
+INSTALL	doc/examples/decode_audio.c
+INSTALL	doc/examples/decode_filter_audio.c
+INSTALL	doc/examples/decode_filter_video.c
+INSTALL	doc/examples/decode_video.c
+INSTALL	doc/examples/demux_decode.c
+INSTALL	doc/examples/encode_audio.c
+INSTALL	doc/examples/encode_video.c
+INSTALL	doc/examples/extract_mvs.c
+INSTALL	doc/examples/filter_audio.c
+INSTALL	doc/examples/hw_decode.c
+INSTALL	doc/examples/mux.c
+INSTALL	doc/examples/qsv_decode.c
+INSTALL	doc/examples/qsv_transcode.c
+INSTALL	doc/examples/remux.c
+INSTALL	doc/examples/resample_audio.c
+INSTALL	doc/examples/scale_video.c
+INSTALL	doc/examples/show_metadata.c
+INSTALL	doc/examples/transcode_aac.c
+INSTALL	doc/examples/transcode.c
+INSTALL	doc/examples/vaapi_encode.c
+INSTALL	doc/examples/vaapi_transcode.c
+INSTALL	doc/examples/README
+INSTALL	doc/examples/Makefile
+INSTALL	libavdevice/libavdevice.so
+STRIP	install-libavdevice-shared
+INSTALL	libavfilter/libavfilter.so
+STRIP	install-libavfilter-shared
+INSTALL	libavformat/libavformat.so
+STRIP	install-libavformat-shared
+INSTALL	libavcodec/libavcodec.so
+STRIP	install-libavcodec-shared
+INSTALL	libswresample/libswresample.so
+STRIP	install-libswresample-shared
+INSTALL	libswscale/libswscale.so
+STRIP	install-libswscale-shared
+INSTALL	libavutil/libavutil.so
+STRIP	install-libavutil-shared
+INSTALL	libavdevice/avdevice.h
+INSTALL	libavdevice/version.h
+INSTALL	libavdevice/version_major.h
+INSTALL	libavdevice/libavdevice.pc
+INSTALL	libavfilter/avfilter.h
+INSTALL	libavfilter/buffersink.h
+INSTALL	libavfilter/buffersrc.h
+INSTALL	libavfilter/version.h
+INSTALL	libavfilter/version_major.h
+INSTALL	libavfilter/libavfilter.pc
+INSTALL	libavformat/avformat.h
+INSTALL	libavformat/avio.h
+INSTALL	libavformat/version.h
+INSTALL	libavformat/version_major.h
+INSTALL	libavformat/libavformat.pc
+INSTALL	libavcodec/ac3_parser.h
+INSTALL	libavcodec/adts_parser.h
+INSTALL	libavcodec/avcodec.h
+INSTALL	libavcodec/avdct.h
+INSTALL	libavcodec/bsf.h
+INSTALL	libavcodec/codec.h
+INSTALL	libavcodec/codec_desc.h
+INSTALL	libavcodec/codec_id.h
+INSTALL	libavcodec/codec_par.h
+INSTALL	libavcodec/d3d11va.h
+INSTALL	libavcodec/defs.h
+INSTALL	libavcodec/dirac.h
+INSTALL	libavcodec/dv_profile.h
+INSTALL	libavcodec/dxva2.h
+INSTALL	libavcodec/exif.h
+INSTALL	libavcodec/jni.h
+INSTALL	libavcodec/mediacodec.h
+INSTALL	libavcodec/packet.h
+INSTALL	libavcodec/qsv.h
+INSTALL	libavcodec/smpte_436m.h
+INSTALL	libavcodec/vdpau.h
+INSTALL	libavcodec/version.h
+INSTALL	libavcodec/version_major.h
+INSTALL	libavcodec/videotoolbox.h
+INSTALL	libavcodec/vorbis_parser.h
+INSTALL	libavcodec/libavcodec.pc
+INSTALL	libswresample/swresample.h
+INSTALL	libswresample/version.h
+INSTALL	libswresample/version_major.h
+INSTALL	libswresample/libswresample.pc
+INSTALL	libswscale/swscale.h
+INSTALL	libswscale/version.h
+INSTALL	libswscale/version_major.h
+INSTALL	libswscale/libswscale.pc
+INSTALL	libavutil/adler32.h
+INSTALL	libavutil/aes.h
+INSTALL	libavutil/aes_ctr.h
+INSTALL	libavutil/ambient_viewing_environment.h
+INSTALL	libavutil/attributes.h
+INSTALL	libavutil/audio_fifo.h
+INSTALL	libavutil/avassert.h
+INSTALL	libavutil/avstring.h
+INSTALL	libavutil/avutil.h
+INSTALL	libavutil/base64.h
+INSTALL	libavutil/blowfish.h
+INSTALL	libavutil/bprint.h
+INSTALL	libavutil/bswap.h
+INSTALL	libavutil/buffer.h
+INSTALL	libavutil/cast5.h
+INSTALL	libavutil/camellia.h
+INSTALL	libavutil/channel_layout.h
+INSTALL	libavutil/common.h
+INSTALL	libavutil/container_fifo.h
+INSTALL	libavutil/cpu.h
+INSTALL	libavutil/crc.h
+INSTALL	libavutil/csp.h
+INSTALL	libavutil/des.h
+INSTALL	libavutil/detection_bbox.h
+INSTALL	libavutil/dict.h
+INSTALL	libavutil/display.h
+INSTALL	libavutil/dovi_meta.h
+INSTALL	libavutil/downmix_info.h
+INSTALL	libavutil/encryption_info.h
+INSTALL	libavutil/error.h
+INSTALL	libavutil/eval.h
+INSTALL	libavutil/executor.h
+INSTALL	libavutil/fifo.h
+INSTALL	libavutil/file.h
+INSTALL	libavutil/film_grain_params.h
+INSTALL	libavutil/frame.h
+INSTALL	libavutil/hash.h
+INSTALL	libavutil/hdr_dynamic_metadata.h
+INSTALL	libavutil/hdr_dynamic_vivid_metadata.h
+INSTALL	libavutil/hmac.h
+INSTALL	libavutil/hwcontext.h
+INSTALL	libavutil/hwcontext_cuda.h
+INSTALL	libavutil/hwcontext_d3d11va.h
+INSTALL	libavutil/hwcontext_d3d12va.h
+INSTALL	libavutil/hwcontext_drm.h
+INSTALL	libavutil/hwcontext_dxva2.h
+INSTALL	libavutil/hwcontext_amf.h
+INSTALL	libavutil/hwcontext_qsv.h
+INSTALL	libavutil/hwcontext_mediacodec.h
+INSTALL	libavutil/hwcontext_opencl.h
+INSTALL	libavutil/hwcontext_oh.h
+INSTALL	libavutil/hwcontext_vaapi.h
+INSTALL	libavutil/hwcontext_videotoolbox.h
+INSTALL	libavutil/hwcontext_vdpau.h
+INSTALL	libavutil/hwcontext_vulkan.h
+INSTALL	libavutil/iamf.h
+INSTALL	libavutil/imgutils.h
+INSTALL	libavutil/intfloat.h
+INSTALL	libavutil/intreadwrite.h
+INSTALL	libavutil/lfg.h
+INSTALL	libavutil/log.h
+INSTALL	libavutil/lzo.h
+INSTALL	libavutil/macros.h
+INSTALL	libavutil/mathematics.h
+INSTALL	libavutil/mastering_display_metadata.h
+INSTALL	libavutil/md5.h
+INSTALL	libavutil/mem.h
+INSTALL	libavutil/motion_vector.h
+INSTALL	libavutil/murmur3.h
+INSTALL	libavutil/opt.h
+INSTALL	libavutil/parseutils.h
+INSTALL	libavutil/pixdesc.h
+INSTALL	libavutil/pixelutils.h
+INSTALL	libavutil/pixfmt.h
+INSTALL	libavutil/random_seed.h
+INSTALL	libavutil/rc4.h
+INSTALL	libavutil/rational.h
+INSTALL	libavutil/refstruct.h
+INSTALL	libavutil/replaygain.h
+INSTALL	libavutil/ripemd.h
+INSTALL	libavutil/samplefmt.h
+INSTALL	libavutil/sha.h
+INSTALL	libavutil/sha512.h
+INSTALL	libavutil/spherical.h
+INSTALL	libavutil/stereo3d.h
+INSTALL	libavutil/tdrdi.h
+INSTALL	libavutil/threadmessage.h
+INSTALL	libavutil/time.h
+INSTALL	libavutil/timecode.h
+INSTALL	libavutil/timestamp.h
+INSTALL	libavutil/tree.h
+INSTALL	libavutil/twofish.h
+INSTALL	libavutil/uuid.h
+INSTALL	libavutil/version.h
+INSTALL	libavutil/video_enc_params.h
+INSTALL	libavutil/xtea.h
+INSTALL	libavutil/tea.h
+INSTALL	libavutil/tx.h
+INSTALL	libavutil/video_hint.h
+INSTALL	libavutil/avconfig.h
+INSTALL	libavutil/ffversion.h
+INSTALL	libavutil/libavutil.pc
+
+INFO: Completed build for arm64-v8a on API level 33 at Fri Oct 16 01:50:11 AM +10 2026
+
+DEBUG: Copied the license file of cpu_features successfully
+
+DEBUG: Copied the ffmpeg-kit license successfully
+
+DEBUG: Copied source.txt successfully
+
+[arm64-v8a] Compile        : ffmpegkit <= ffmpegkit.c
+[arm64-v8a] Compile        : ffmpegkit <= ffprobekit.c
+[arm64-v8a] Compile        : ffmpegkit <= ffmpegkit_exception.c
+[arm64-v8a] Compile        : ffmpegkit <= cmdutils.c
+[arm64-v8a] Compile        : ffmpegkit <= ffmpeg.c
+[arm64-v8a] Compile        : ffmpegkit <= ffprobe.c
+[arm64-v8a] Compile        : ffmpegkit <= ffmpeg_mux.c
+[arm64-v8a] Compile        : ffmpegkit <= ffmpeg_mux_init.c
+[arm64-v8a] Compile        : ffmpegkit <= ffmpeg_demux.c
+[arm64-v8a] Compile        : ffmpegkit <= ffmpeg_enc.c
+[arm64-v8a] Compile        : ffmpegkit <= ffmpeg_dec.c
+[arm64-v8a] Compile        : ffmpegkit <= ffmpeg_opt.c
+[arm64-v8a] Compile        : ffmpegkit <= ffmpeg_sched.c
+[arm64-v8a] Compile        : ffmpegkit <= opt_common.c
+[arm64-v8a] Compile        : ffmpegkit <= ffmpeg_hw.c
+[arm64-v8a] Compile        : ffmpegkit <= ffmpeg_filter.c
+[arm64-v8a] Compile        : ffmpegkit <= graphprint.c
+[arm64-v8a] Compile        : ffmpegkit <= graph_resources.c
+[arm64-v8a] Compile        : ffmpegkit <= resman.c
+[arm64-v8a] Compile        : ffmpegkit <= avtextformat.c
+[arm64-v8a] Compile        : ffmpegkit <= tf_compact.c
+[arm64-v8a] Compile        : ffmpegkit <= tf_default.c
+[arm64-v8a] Compile        : ffmpegkit <= tf_flat.c
+[arm64-v8a] Compile        : ffmpegkit <= tf_ini.c
+[arm64-v8a] Compile        : ffmpegkit <= tf_json.c
+[arm64-v8a] Compile        : ffmpegkit <= tf_mermaid.c
+[arm64-v8a] Compile        : ffmpegkit <= tf_xml.c
+[arm64-v8a] Compile        : ffmpegkit <= sync_queue.c
+[arm64-v8a] Compile        : ffmpegkit <= thread_queue.c
+[arm64-v8a] Compile        : ffmpegkit <= tw_avio.c
+[arm64-v8a] Compile        : ffmpegkit <= tw_buffer.c
+[arm64-v8a] Compile        : ffmpegkit <= tw_stdout.c
+[arm64-v8a] Compile        : ffmpegkit <= android_support.c
+[arm64-v8a] Compile        : ffmpegkit <= ffmpeg_context.c
+[arm64-v8a] Compile        : ffmpegkit <= binder.c
+[arm64-v8a] Prebuilt       : libavfilter.so <= jni/ffmpeg/../../../prebuilt/android-arm64-33/ffmpeg/lib/
+[arm64-v8a] Prebuilt       : libavformat.so <= jni/ffmpeg/../../../prebuilt/android-arm64-33/ffmpeg/lib/
+[arm64-v8a] Prebuilt       : libavcodec.so <= jni/ffmpeg/../../../prebuilt/android-arm64-33/ffmpeg/lib/
+[arm64-v8a] Prebuilt       : libavutil.so <= jni/ffmpeg/../../../prebuilt/android-arm64-33/ffmpeg/lib/
+[arm64-v8a] Prebuilt       : libswresample.so <= jni/ffmpeg/../../../prebuilt/android-arm64-33/ffmpeg/lib/
+[arm64-v8a] Prebuilt       : libavdevice.so <= jni/ffmpeg/../../../prebuilt/android-arm64-33/ffmpeg/lib/
+[arm64-v8a] Prebuilt       : libswscale.so <= jni/ffmpeg/../../../prebuilt/android-arm64-33/ffmpeg/lib/
+[arm64-v8a] SharedLibrary  : libffmpegkit.so
+[arm64-v8a] Install        : libffmpegkit.so => libs/arm64-v8a/libffmpegkit.so
+[arm64-v8a] Compile        : ffmpegkit_abidetect <= ffmpegkit_abidetect.c
+[arm64-v8a] SharedLibrary  : libffmpegkit_abidetect.so
+[arm64-v8a] Install        : libffmpegkit_abidetect.so => libs/arm64-v8a/libffmpegkit_abidetect.so
+[arm64-v8a] Install        : libavfilter.so => libs/arm64-v8a/libavfilter.so
+[arm64-v8a] Install        : libavformat.so => libs/arm64-v8a/libavformat.so
+[arm64-v8a] Install        : libavcodec.so => libs/arm64-v8a/libavcodec.so
+[arm64-v8a] Install        : libavutil.so => libs/arm64-v8a/libavutil.so
+[arm64-v8a] Install        : libswresample.so => libs/arm64-v8a/libswresample.so
+[arm64-v8a] Install        : libavdevice.so => libs/arm64-v8a/libavdevice.so
+[arm64-v8a] Install        : libswscale.so => libs/arm64-v8a/libswscale.so
+Picked up JAVA_TOOL_OPTIONS: ''-Duser.language=en -Duser.country=US
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/home/satori/.gradle/wrapper/dists/gradle-8.14.5-bin/690y85m0j9nfaub7xoiayko8a/gradle-8.14.5/lib/native-platform-0.22-milestone-28.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+BUG! exception in phase 'semantic analysis' in source unit '_BuildScript_' Unsupported class file major version 70
+> Unsupported class file major version 70
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 3s
