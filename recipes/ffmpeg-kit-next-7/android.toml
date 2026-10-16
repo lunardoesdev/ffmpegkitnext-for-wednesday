@@ -82,7 +82,11 @@ JAVA_HOME="$(readlink -f "$JAVA_HOME")"
 export JAVA_HOME
 
 DESTDIR= SKIP_ffmpeg=1 SKIP_libvpx=1 SKIP_opus=1 SKIP_lame=1 \
-GRADLE_OPTS="-Dorg.gradle.workers.max=$CORES -Dorg.gradle.java.home=$JAVA_HOME" \\
+# The daemon is off: it never exits on its own here, ends up swallowed by swap,
+# and the next FFmpeg link is then killed by the OOM killer. Their scripts are the
+# ones that invoke gradlew, so the property is the way in - there is no command
+# line of ours to add --no-daemon to.
+GRADLE_OPTS="-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=$CORES -Dorg.gradle.java.home=$JAVA_HOME" \\
   # v7.1.0 has no android.sh. Its plain entry point is scripts/start-android.sh
   # (nix-android.sh calls exactly that), and architecture there uses the older
   # one-ABI-at-a-time spelling, so arm64-v8a is what is left after disabling the
