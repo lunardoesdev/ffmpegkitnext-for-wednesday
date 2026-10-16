@@ -37,7 +37,13 @@ mkdir -p prebuilt/android-arm64-33/ffmpeg
 cp -rf $NESTDIR/ffmpeg-kit-ffmpeg-8@aarch64-android33/lib prebuilt/android-arm64-33/ffmpeg/
 cp -rf $NESTDIR/ffmpeg-kit-ffmpeg-8@aarch64-android33/include prebuilt/android-arm64-33/ffmpeg/
 
-# SKIP_ffmpeg=1 is what keeps their FFmpeg build from landing on top of ours
+# SKIP_ffmpeg=1 is what keeps their FFmpeg build from landing on top of ours. On
+# this entry point the environment alone did not do it, though: scripts/start-android.sh
+# sources main-android.sh with its own enabled-library list, and their build ran FFmpeg
+# anyway (29 minutes of it, and the link that the OOM killer took). Their own switch is
+# the way in - --disable-lib-<name> calls skip_library and exports SKIP_<name> - so it
+# is passed on the command line below too. The environment variables stay for the paths
+# that do honour them. What it replaces is their own ffmpeg step
 # (scripts/main-android.sh:217), and --no-ffmpeg-kit-protocols is gone with it:
 # the protocols their FFmpeg build would have patched in are in the FFmpeg this
 # recipe placed above, and the wrapper calls for them unconditionally -
@@ -83,6 +89,7 @@ GRADLE_OPTS="-Dorg.gradle.workers.max=$CORES -Dorg.gradle.java.home=$JAVA_HOME" 
   # in v9.0.0.
   ./scripts/start-android.sh --disable-arm-v7a --disable-arm-v7a-neon \
   --disable-x86 --disable-x86-64 --api-level=33 --jobs=$CORES \\
+  --disable-lib-ffmpeg --disable-lib-libvpx --disable-lib-opus --disable-lib-lame \
   --no-output-redirection || {
   # Their build log is the only place that says which step failed, and the work
   # directory is removed when the node exits, so it is copied next to this recipe
