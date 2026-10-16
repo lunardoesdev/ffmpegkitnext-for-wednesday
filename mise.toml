@@ -6,11 +6,60 @@ java = "21"
 #
 # The recipes that drive the build live in this checkout under recipes/ - they
 # are what puts OUR packaged FFmpeg (and libvpx/opus/lame) into the archive
-# instead of the copies the upstream build would vendor. Nothing here points at
-# a directory only one machine has: everything retrolunar needs beyond this
-# checkout - its packages tree, its nest - it fetches or creates itself.
+# instead of the copies the upstream build would vendor.
+#
+# Two trees are used, and both are named here: this checkout's recipes/, and
+# retrolunar2-packages, pinned to a commit. The packages tree decides the
+# systems (toolchains, flags, build-system drivers) and the versions of every
+# dependency, so leaving it unpinned makes the build different next week. The
+# built-in default repository is left out, so a build uses exactly these two and
+# nothing else.
+# The components the build actually uses, installed through the SDK's own CLI.
+# Their android library compiles against platform 34 and declares no
+# buildToolsVersion of its own, so AGP picks its default; the recipes take the
+# single NDK under $ANDROID_HOME/ndk, so that version is pinned here as well.
+# Everything else the SDK happens to carry on this machine (platform 36, the
+# sources package, a second CMake) is not needed by this build and is left out.
+[tasks.sdk-components]
+description = "Install the Android SDK components the .aar build needs (Android CLI / sdkmanager)"
+run = '''
+#!/usr/bin/env bash
+set -euo pipefail
+: "${ANDROID_HOME:?ANDROID_HOME is unset - run this through mise, which installs the android-sdk tool}"
+
+# Two CLIs can sit behind cmdline-tools. The classic sdkmanager, and the Android
+# CLI that replaced it - mise ships the latter, where `sdkmanager` is only a shim
+# that prints a deprecation notice and exits non-zero, which under pipefail fails
+# the whole task. Use whichever is present; their package spellings differ
+# (slash vs semicolon), which is why both are written out.
+cli="$(ls "$ANDROID_HOME"/cmdline-tools/*/bin/android 2>/dev/null | head -1)"
+classic="$(ls "$ANDROID_HOME"/cmdline-tools/*/bin/sdkmanager 2>/dev/null | head -1)"
+
+if [ -n "$cli" ]; then
+  # package 34 is what their library compiles against; the NDK is the one the
+  # recipes pick up ($ANDROID_HOME/ndk/<only one>); cmake is what AGP wants if a
+  # native build asks for it.
+  "$cli" sdk install platform-tools platforms/android-34 \
+    build-tools/35.0.0 ndk/29.0.14206865 cmake/3.22.1
+elif [ -n "$classic" ]; then
+  # sdkmanager asks for each licence the first time it needs it; an unattended
+  # build answers them once, and they land in $ANDROID_HOME/licenses.
+  yes | "$classic" --licenses >/dev/null 2>&1 || true
+  yes | "$classic" --install platform-tools platforms\;android-34 \
+    build-tools\;35.0.0 ndk\;29.0.14206865 cmake\;3.22.1
+else
+  echo "neither the android CLI nor sdkmanager is under $ANDROID_HOME/cmdline-tools/*/bin" >&2
+  exit 1
+fi
+
+echo "--- installed:"
+if [ -n "$cli" ]; then "$cli" sdk list; else "$classic" --list_installed; fi 2>/dev/null \
+  | grep -E "platform-tools|android-34|build-tools/35|ndk/|cmake/3" || true
+'''
+
 [tasks.aar]
 description = "Build one ffmpeg-kit-next .aar into dist/ (arg: 7, 8 or 9)"
+depends = ["sdk-components"]
 run = '''
 #!/usr/bin/env bash
 set -euo pipefail
@@ -33,8 +82,18 @@ command -v retrolunar >/dev/null 2>&1 || {
 
 # --cores 1: one build at a time, one thread at a time. The closure shares a
 # single nest, and parallel nodes fight over it (and over the machine).
+#
+# The packages tree is pinned by commit, not by branch: the SHA below is the
+# 2.15 tag of retrolunar2-packages (an immutable way to say "the tag"), and
+# bumping it is a deliberate act. Override RETROLUNAR_PACKAGES_REV to try
+# another revision without editing this file.
 nest="${RETROLUNAR_NEST:-$HOME/.cache/retrolunar/nestdir}"
-retrolunar install --cores 1 --nest "$nest" --repo "kit=$recipes" \
+packages_rev="${RETROLUNAR_PACKAGES_REV:-66482cc19e0154406ed33036c2c9de57e1400ecc}"
+packages_url="https://github.com/lunardoesdev/retrolunar2-packages"
+
+retrolunar install --cores 1 --nest "$nest" --no-default-repo \
+  --repo "kit=$recipes" \
+  --repo "packages=$packages_url@$packages_rev" \
   "ffmpeg-kit-next-$v@aarch64-android33" | sh
 
 # Hand the archive over. The build already puts it at lib/ inside the nest
