@@ -95,6 +95,7 @@ GRADLE_OPTS="-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=$CORES -Dorg.gra
   # check, --api-level, --jobs, --no-output-redirection.
   ./scripts/start-android.sh --disable-arm-v7a --disable-arm-v7a-neon \
   --disable-x86 --disable-x86-64 --api-level=33 --jobs=$CORES \\
+  --skip-ffmpeg --skip-libvpx --skip-opus --skip-lame \
   --disable-lib-ffmpeg --disable-lib-libvpx --disable-lib-opus --disable-lib-lame \
   --no-output-redirection || {
   # Their build log is the only place that says which step failed, and the work
