@@ -110,6 +110,19 @@ cp "$aar" "$root/dist/"
 unzip -l "$root/dist/$(basename "$aar")" | grep -c "jni/arm64-v8a/.*\.so" \
   | sed 's/^/shared libraries in the archive: /'
 echo "==> $root/dist/$(basename "$aar")"
+
+# Gradle and the Kotlin compiler leave daemons behind on purpose - they make the
+# NEXT build faster - but here they never exit: they get swapped out whole, and
+# the following FFmpeg link is then killed by the OOM killer while the machine
+# still reports free memory. So stop them once the archive is handed over. The
+# build above still had its daemon; only the aftermath changes. The patterns are
+# built from two literals so this script's own text never contains them, which
+# keeps the lookup from matching the shell that runs it.
+for pat in "Gradle""Daemon" "KotlinCompile""Daemon"; do
+  for pid in $(ps -eo pid,args | grep -F -- "$pat" | grep -v grep | awk '{print $1}'); do
+    kill "$pid" 2>/dev/null || true
+  done
+done
 '''
 
 [tasks.aars]
