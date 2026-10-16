@@ -38,12 +38,13 @@ cp -rf $NESTDIR/ffmpeg-kit-ffmpeg-7@aarch64-android33/lib prebuilt/android-arm64
 cp -rf $NESTDIR/ffmpeg-kit-ffmpeg-7@aarch64-android33/include prebuilt/android-arm64-33/ffmpeg/
 
 # SKIP_ffmpeg=1 is what keeps their FFmpeg build from landing on top of ours. On
-# this entry point the environment alone did not do it, though: scripts/start-android.sh
-# sources main-android.sh with its own enabled-library list, and their build ran FFmpeg
-# anyway (29 minutes of it, and the link that the OOM killer took). Their own switch is
-# the way in - --disable-lib-<name> calls skip_library and exports SKIP_<name> - so it
-# is passed on the command line below too. The environment variables stay for the paths
-# that do honour them. What it replaces is their own ffmpeg step
+# this entry point the environment alone was not enough, though: their build ran
+# FFmpeg anyway - 29 minutes of compiling, the link the OOM killer took, and an
+# archive carrying THEIR libavcodec.so (8 098 296 bytes) where ours is 14 690 208.
+# Their own switch for it is --disable-lib-<name>, which clears that library in
+# their enabled list (scripts/start-android.sh:193), so it is passed below too; the
+# environment variables stay for the paths that do honour them. What this replaces
+# is their own ffmpeg step
 # (scripts/main-android.sh:217), and --no-ffmpeg-kit-protocols is gone with it:
 # the protocols their FFmpeg build would have patched in are in the FFmpeg this
 # recipe placed above, and the wrapper calls for them unconditionally -
